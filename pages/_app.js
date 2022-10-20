@@ -1,15 +1,20 @@
-import { Fragment } from "react";
-import "../styles/globals.css";
+import Head from "next/head";
+import Layout from "../components/layout/layout";
 
-function MyApp({ Component, pageProps }) {
+import "../styles/global.css";
+
+function App({ Component, pageProps }) {
   return (
-    <Fragment>
-      <title>Party!</title>
-      <meta name="description" content="Party" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <Layout>
+      <Head>
+        <title>EventKeeper</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       <Component {...pageProps} />
-    </Fragment>
+    </Layout>
   );
 }
 
-export default MyApp;
+export default App;
