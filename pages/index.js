@@ -5,7 +5,7 @@ import Image from "next/image";
 function HomePage() {
   return (
     <div>
-      <AttendanceRegistration />
+      {/* <AttendanceRegistration /> */}
       <div>
         <h1>Cody's Corner Halloween Party!</h1>
         <h2>Saturday, October 22nd, 2022</h2>

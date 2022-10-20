@@ -3,7 +3,9 @@ function RSVPList() {
     <div>
       <h3>RSVP List</h3>
       <div>
-        <ul></ul>
+        <ul>
+          <li>TBD</li>
+        </ul>
       </div>
     </div>
   );

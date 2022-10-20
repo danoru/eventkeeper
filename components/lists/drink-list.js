@@ -6,7 +6,7 @@ function DrinkList() {
       <h3>Drinks</h3>
       <div>
         <ul>
-          <li></li>
+          <li>TBD</li>
         </ul>
       </div>
     </div>
