@@ -1,7 +1,7 @@
-function DrinkList() {
+function MainDishList() {
   return (
     <div>
-      <h3>Drinks</h3>
+      <h3>Main Dish</h3>
       <div>
         <ul>
           <li>TBD</li>
@@ -11,4 +11,4 @@ function DrinkList() {
   );
 }
 
-export default DrinkList;
+export default MainDishList;

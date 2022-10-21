@@ -1,6 +1,7 @@
 import AttendanceRegistration from "../components/input/attendance-registration";
 import EventList from "../components/lists/event-list";
 import Image from "next/image";
+import NewItem from "../components/input/new-item";
 
 function HomePage() {
   return (
@@ -11,9 +12,8 @@ function HomePage() {
         <h2>Saturday, October 22nd, 2022</h2>
       </div>
       <Image src="/halloween-flyer.jpeg" width="500" height="500" />
-      <div>
-        <EventList />
-      </div>
+      <NewItem />
+      <EventList />
     </div>
   );
 }
