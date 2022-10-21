@@ -3,7 +3,7 @@ function MainDishList(props) {
 
   return (
     <div>
-      <h3>Main Dish</h3>
+      <h3>Main Dishes</h3>
       <div>
         <ul>
           {items?.map((item) => (

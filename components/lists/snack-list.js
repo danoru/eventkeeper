@@ -3,7 +3,7 @@ function SnackList(props) {
 
   return (
     <div>
-      <h3>Snack</h3>
+      <h3>Snacks</h3>
       <div>
         <ul>
           {items?.map((item) => (

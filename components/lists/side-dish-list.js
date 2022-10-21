@@ -3,7 +3,7 @@ function SideDishList(props) {
 
   return (
     <div>
-      <h3>Side Dish</h3>
+      <h3>Side Dishes</h3>
       <div>
         <ul>
           {items?.map((item) => (
