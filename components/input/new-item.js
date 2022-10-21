@@ -44,7 +44,7 @@ function NewItem() {
             Drink
           </option>
           <option value="guest-name" id="guest-name">
-            RSVP Name
+            Guest Name
           </option>
         </select>
         <input
