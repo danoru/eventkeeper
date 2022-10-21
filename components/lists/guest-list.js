@@ -1,9 +1,9 @@
-function DrinkList(props) {
+function GuestList(props) {
   const { items } = props;
 
   return (
     <div>
-      <h3>Drinks</h3>
+      <h3>Guest List</h3>
       <div>
         <ul>
           {items?.map((item) => (
@@ -17,4 +17,4 @@ function DrinkList(props) {
   );
 }
 
-export default DrinkList;
+export default GuestList;

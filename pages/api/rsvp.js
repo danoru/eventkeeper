@@ -1,4 +1,8 @@
-import { connectDatabase, insertDocument } from "../../helpers/db-util";
+import {
+  connectDatabase,
+  getAllDocuments,
+  insertDocument,
+} from "../../helpers/db-util";
 
 async function handler(req, res) {
   if (req.method === "POST") {
@@ -32,15 +36,18 @@ async function handler(req, res) {
       return;
     }
     res.status(201).json({ message: "Item added successfully." });
-    return;
   }
 
   if (req.method === "GET") {
-    const dummyList = { itemType: "main-dish", item: "Paprikash" };
-    res.status(200).json({ itemEntry: dummyList });
-  } else {
-    res.status(500).json({ message: "Invalid request." });
+    try {
+      const documents = await getAllDocuments(client, "attendance", sort);
+      res.status(200).json({ attendance: documents });
+    } catch (error) {
+      res.status(500).json({ message: "GET request failed." });
+    }
   }
+
+  client.close();
 }
 
 export default handler;

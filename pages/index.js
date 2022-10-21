@@ -11,7 +11,7 @@ function HomePage() {
         <h1>Cody's Corner Halloween Party!</h1>
         <h2>Saturday, October 22nd, 2022</h2>
       </div>
-      <Image src="/halloween-flyer.jpeg" width="500" height="500" />
+      <Image src="/halloween-flyer.jpeg" width="450" height="450" />
       <NewItem />
       <EventList />
     </div>

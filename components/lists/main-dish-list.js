@@ -1,10 +1,16 @@
-function MainDishList() {
+function MainDishList(props) {
+  const { items } = props;
+
   return (
     <div>
       <h3>Main Dish</h3>
       <div>
         <ul>
-          <li>TBD</li>
+          {items?.map((item) => (
+            <li key={item._id}>
+              <p>{item.item}</p>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

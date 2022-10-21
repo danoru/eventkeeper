@@ -43,14 +43,14 @@ function NewItem() {
           <option value="drink" id="drink">
             Drink
           </option>
-          <option value="rsvp-name" id="rsvp-name">
+          <option value="guest-name" id="guest-name">
             RSVP Name
           </option>
         </select>
         <input
           type="text"
           id="item"
-          placeholder="Add New Item/RSVP"
+          placeholder="Add New Item/Guest"
           ref={itemInputRef}
         />
         <button>Submit</button>
