@@ -14,7 +14,7 @@
 /build
 
 # connection
-/helpers/
+helpers/
 
 # misc
 .DS_Store
