@@ -36,14 +36,19 @@ async function handler(req, res) {
       return;
     }
     res.status(201).json({ message: "Item added successfully." });
+    return;
   }
 
   if (req.method === "GET") {
     try {
-      const documents = await getAllDocuments(client, "attendance", sort);
+      const documents = await getAllDocuments(client, "attendance", {
+        _id: -1,
+      });
       res.status(200).json({ attendance: documents });
+      return;
     } catch (error) {
       res.status(500).json({ message: "GET request failed." });
+      return;
     }
   }
 

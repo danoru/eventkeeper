@@ -13,9 +13,6 @@
 # production
 /build
 
-# connection
-/helpers/
-
 # misc
 .DS_Store
 *.pem
