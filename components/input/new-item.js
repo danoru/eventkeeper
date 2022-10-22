@@ -1,11 +1,11 @@
 import { useRef } from "react";
 
-function NewItem() {
+function NewItem(props) {
   const itemInputRef = useRef();
   const itemTypeInputRef = useRef();
 
-  function submitFormHandler(event) {
-    event.preventDefault();
+  function submitFormHandler() {
+    // event.preventDefault();
 
     const enteredItem = itemInputRef.current.value;
     const enteredItemType = itemTypeInputRef.current.value;

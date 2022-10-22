@@ -6,11 +6,13 @@ function DrinkList(props) {
       <h3>Drinks</h3>
       <div>
         <ul>
-          {items?.map((item) => (
-            <li key={item._id}>
-              <p>{item.item}</p>
-            </li>
-          ))}
+          {items
+            ?.filter((item) => item.itemEntry.itemType === "drink")
+            .map((item) => (
+              <li key={item._id}>
+                <p>{item.itemEntry.item}</p>
+              </li>
+            ))}
         </ul>
       </div>
     </div>
