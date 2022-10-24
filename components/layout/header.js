@@ -8,6 +8,13 @@ function Header() {
       <div className={classes.logo}>
         <Link href="/">EventKeeper</Link>
       </div>
+      <nav className={classes.navigation}>
+        <ul>
+          <li>
+            <Link href="/events">Browse All Events</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
