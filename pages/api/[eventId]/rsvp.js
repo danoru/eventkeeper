@@ -2,7 +2,7 @@ import {
   connectDatabase,
   getAllDocuments,
   insertDocument,
-} from "../../helpers/db-util";
+} from "../../../helpers/db-util";
 
 async function handler(req, res) {
   let client;

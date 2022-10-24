@@ -6,16 +6,16 @@ import MainDishList from "./main-dish-list";
 import GuestList from "./guest-list";
 import SideDishList from "./side-dish-list";
 import SnackList from "./snack-list";
+import classes from "./event-rsvp-list.module.css";
 
-import classes from "./event-list.module.css";
-
-function EventList() {
+function EventRSVPList(props) {
+  const { eventId } = props;
   const [showItems, setShowItems] = useState(true);
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     if (showItems) {
-      fetch("/api/rsvp")
+      fetch("/api/" + eventId + "/rsvp")
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
@@ -36,4 +36,4 @@ function EventList() {
   );
 }
 
-export default EventList;
+export default EventRSVPList;

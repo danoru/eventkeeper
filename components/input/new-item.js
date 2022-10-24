@@ -1,6 +1,8 @@
 import { useRef } from "react";
 
 function NewItem(props) {
+  const { eventId } = props;
+
   const itemInputRef = useRef();
   const itemTypeInputRef = useRef();
 
@@ -12,7 +14,7 @@ function NewItem(props) {
 
     const reqBody = { item: enteredItem, itemType: enteredItemType };
 
-    fetch("/api/rsvp", {
+    fetch("/api/" + eventId + "/rsvp", {
       method: "POST",
       body: JSON.stringify(reqBody),
       headers: {
