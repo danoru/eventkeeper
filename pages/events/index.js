@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import Head from "next/head";
 
-import { getAllEvents } from "../../data/event-data";
-import EventList from "../../components/events/event-list";
+import { getAllEvents } from "../../src/data/event-data";
+import EventList from "../../src/components/events/event-list";
 
 function EventsPage(props) {
   const { events } = props;

@@ -1,7 +1,9 @@
+import * as React from "react";
+
 import Head from "next/head";
 
-import { getFeaturedEvents } from "../data/event-data";
-import EventList from "../components/events/event-list";
+import EventList from "../src/components/events/event-list";
+import { getFeaturedEvents } from "../src/data/event-data";
 
 function HomePage(props) {
   return (

@@ -3,9 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 
 // import AttendanceRegistration from "../components/input/attendance-registration";
-import { getFeaturedEvents, getEventById } from "../../data/event-data";
-import EventRSVPList from "../../components/lists/event-rsvp-list";
-import NewItem from "../../components/input/new-item";
+import { getFeaturedEvents, getEventById } from "../../src/data/event-data";
+import EventRSVPList from "../../src/components/lists/event-rsvp-list";
+import NewItem from "../../src/components/input/new-item";
 
 function EventDetailPage(props) {
   const event = props.selectedEvent;
