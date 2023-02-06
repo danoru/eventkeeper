@@ -11,17 +11,6 @@ const EVENTS = [
     isFeatured: false,
   },
   {
-    _id: { $oid: "6356c27c5cac4a56ab03d7f8" },
-    id: "sparks2202",
-    title: "Cody's Corner Friendsgiving 2022",
-    description: "It's a Friendsgiving Party!",
-    location: "Cody's Corner",
-    date: "2022-11-26",
-    image: "images/halloween-flyer.jpeg",
-    flyer: "/images/halloween-flyer.jpeg",
-    isFeatured: false,
-  },
-  {
     _id: { $oid: "63e0a755a0d5af8e23163406" },
     id: "sparks2301",
     title: "Cody's Corner Crawfish Boil 2023",
