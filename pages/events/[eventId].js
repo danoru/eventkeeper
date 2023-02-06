@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import moment from "moment";
 
 // import AttendanceRegistration from "../components/input/attendance-registration";
 import { getFeaturedEvents, getEventById } from "../../src/data/event-data";
@@ -9,6 +10,7 @@ import NewItem from "../../src/components/input/new-item";
 
 function EventDetailPage(props) {
   const event = props.selectedEvent;
+  const humanReadableDate = moment(event.date).format("dddd, MMMM Do YYYY");
 
   if (!event) {
     return (
@@ -27,7 +29,7 @@ function EventDetailPage(props) {
       {/* <AttendanceRegistration /> */}
       <div>
         <h1>{event.title}</h1>
-        <h2>{event.date}</h2>
+        <h2>{humanReadableDate}</h2>
       </div>
       <Image src={event.flyer} width="450" height="450" />
       <NewItem />

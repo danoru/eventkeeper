@@ -1,15 +1,12 @@
 import Image from "next/image";
 import Button from "../ui/button";
 import classes from "./event-item.module.css";
+import moment from "moment";
 
 function EventItem(props) {
   const { title, image, flyer, date, location, id } = props;
 
-  const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const humanReadableDate = moment(date).format("dddd, MMMM Do YYYY");
   const formattedAddress = location.replace(", ", "\n");
   const exploreLink = `/events/${id}`;
 
