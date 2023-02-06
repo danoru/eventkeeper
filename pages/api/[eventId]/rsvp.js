@@ -9,10 +9,12 @@ async function handler(req, res) {
 
   const item = req.body.item;
   const itemType = req.body.itemType;
+  const eventId = req.body.eventId;
 
   const newItemEntry = {
     itemType: itemType,
     item: item,
+    eventId: eventId,
   };
 
   try {
