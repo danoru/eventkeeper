@@ -22,6 +22,7 @@ const EVENTS = [
     isFeatured: false,
   },
   {
+    _id: { $oid: "63e0a755a0d5af8e23163406" },
     id: "sparks2301",
     title: "Cody's Corner Crawfish Boil 2023",
     description: "It's a crawfish boil!",

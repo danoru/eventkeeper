@@ -12,7 +12,11 @@ function NewItem(props) {
     const enteredItem = itemInputRef.current.value;
     const enteredItemType = itemTypeInputRef.current.value;
 
-    const reqBody = { item: enteredItem, itemType: enteredItemType };
+    const reqBody = {
+      item: enteredItem,
+      itemType: enteredItemType,
+      eventId: eventId,
+    };
 
     fetch("/api/" + eventId + "/rsvp", {
       method: "POST",
