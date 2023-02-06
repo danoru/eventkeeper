@@ -1,5 +1,3 @@
-import { getEventById } from "../../data/event-data";
-
 function GuestList(props) {
   const { items } = props;
 
@@ -12,7 +10,7 @@ function GuestList(props) {
             ?.filter(
               (item) =>
                 item.itemEntry.itemType === "guest-name" &&
-                item.itemEntry.id === { eventId }
+                item.itemEntry.id === "sparks2301"
             )
             .map((item) => (
               <li key={item._id}>
@@ -26,16 +24,3 @@ function GuestList(props) {
 }
 
 export default GuestList;
-
-export async function getStaticProps(context) {
-  const eventId = context.params.eventId;
-
-  const event = await getEventById(eventId);
-
-  return {
-    props: {
-      selectedEvent: event,
-    },
-    revalidate: 30,
-  };
-}
