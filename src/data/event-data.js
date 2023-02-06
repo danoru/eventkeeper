@@ -26,7 +26,7 @@ const EVENTS = [
     title: "Cody's Corner Crawfish Boil 2023",
     description: "It's a crawfish boil!",
     location: "Cody's Corner",
-    date: "2023-4-1",
+    date: "2023-04-01",
     image: "images/crawfishboil.jpg",
     flyer: "/images/crawfishboil.jpg",
     isFeatured: true,
