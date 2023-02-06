@@ -11,6 +11,7 @@ import NewItem from "../../src/components/input/new-item";
 function EventDetailPage(props) {
   const event = props.selectedEvent;
   const humanReadableDate = moment(event.date).format("dddd, MMMM Do YYYY");
+  const timeUntilDate = moment(event.date).startOf("day").fromNow();
 
   if (!event) {
     return (
@@ -30,6 +31,7 @@ function EventDetailPage(props) {
       <div>
         <h1>{event.title}</h1>
         <h2>{humanReadableDate}</h2>
+        <h3>This event is {timeUntilDate}.</h3>
       </div>
       <Image src={event.flyer} width="450" height="450" />
       <NewItem />

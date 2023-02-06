@@ -13,7 +13,7 @@ function EventsPage(props) {
         <title>EventKeeper: All Events</title>
         <meta
           name="description"
-          content="Find a lot of great events that allow you to evolve..."
+          content="Find a lot of great events to attend with your friends!"
         />
       </Head>
       <EventList items={events} />
