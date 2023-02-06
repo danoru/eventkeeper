@@ -1,6 +1,6 @@
 import {
   connectDatabase,
-  getAllDocuments,
+  getFilteredDocuments,
   insertDocument,
 } from "../../../src/helpers/db-util";
 
@@ -12,9 +12,9 @@ async function handler(req, res) {
   const eventId = req.body.eventId;
 
   const newItemEntry = {
-    itemType: itemType,
-    item: item,
-    eventId: eventId,
+    itemType,
+    item,
+    eventId,
   };
 
   try {
@@ -42,9 +42,12 @@ async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const documents = await getAllDocuments(client, "attendance", {
-        _id: -1,
-      });
+      const documents = await getFilteredDocuments(
+        client,
+        "attendance",
+        {},
+        { _id: -1 }
+      );
       res.status(200).json({ attendance: documents });
     } catch (error) {
       res.status(500).json({ message: "GET request failed." + error });

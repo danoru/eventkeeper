@@ -1,7 +1,9 @@
 import { useRef } from "react";
+import { useRouter } from "next/router";
 
 function NewItem(props) {
   const { eventId } = props;
+  const router = useRouter();
 
   const itemInputRef = useRef();
   const itemTypeInputRef = useRef();
@@ -11,11 +13,12 @@ function NewItem(props) {
 
     const enteredItem = itemInputRef.current.value;
     const enteredItemType = itemTypeInputRef.current.value;
+    const enteredEventId = router.query.eventId;
 
     const reqBody = {
       item: enteredItem,
       itemType: enteredItemType,
-      eventId: eventId,
+      eventId: enteredEventId,
     };
 
     fetch("/api/" + eventId + "/rsvp", {

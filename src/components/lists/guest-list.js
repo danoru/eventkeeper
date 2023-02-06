@@ -1,5 +1,10 @@
+import { useRouter } from "next/router";
+
 function GuestList(props) {
   const { items } = props;
+  const router = useRouter();
+
+  const eventId = router.query.eventId;
 
   return (
     <div>
@@ -10,7 +15,7 @@ function GuestList(props) {
             ?.filter(
               (item) =>
                 item.itemEntry.itemType === "guest-name" &&
-                item.itemEntry.id === "sparks2301"
+                item.itemEntry.eventId === eventId
             )
             .map((item) => (
               <li key={item._id}>

@@ -21,3 +21,15 @@ export async function getAllDocuments(client, collection, sort) {
 
   return documents;
 }
+
+export async function getFilteredDocuments(client, collection, find, sort) {
+  const db = client.db();
+
+  const documents = await db
+    .collection(collection)
+    .find(find)
+    .sort(sort)
+    .toArray();
+
+  return documents;
+}
