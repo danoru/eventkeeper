@@ -52,7 +52,7 @@ function NewItem(props) {
         <input
           type="text"
           id="item"
-          placeholder="Add New Item/Guest"
+          placeholder="Add Guest"
           ref={itemInputRef}
         />
         <button>Submit</button>
