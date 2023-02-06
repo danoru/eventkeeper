@@ -26,11 +26,11 @@ function EventRSVPList(props) {
 
   return (
     <div className={classes.listContainer}>
-      {showItems && <MainDishList items={items} />}
+      {/* {showItems && <MainDishList items={items} />}
       {showItems && <SideDishList items={items} />}
       {showItems && <SnackList items={items} />}
       {showItems && <DessertList items={items} />}
-      {showItems && <DrinkList items={items} />}
+      {showItems && <DrinkList items={items} />} */}
       {showItems && <GuestList items={items} />}
     </div>
   );

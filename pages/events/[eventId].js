@@ -26,8 +26,8 @@ function EventDetailPage(props) {
       </Head>
       {/* <AttendanceRegistration /> */}
       <div>
-        <h1>Cody's Corner Halloween Party!</h1>
-        <h2>Saturday, October 22nd, 2022</h2>
+        <h1>{event.title}</h1>
+        <h2>{event.date}</h2>
       </div>
       <Image src={event.flyer} width="450" height="450" />
       <NewItem />

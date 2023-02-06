@@ -30,7 +30,7 @@ function NewItem(props) {
       <form onSubmit={submitFormHandler}>
         <label htmlFor="item">Add Item to Event List</label>
         <select htmlFor="item-type" id="item-type" ref={itemTypeInputRef}>
-          <option value="main-dish" id="main-dish">
+          {/* <option value="main-dish" id="main-dish">
             Main Dish
           </option>
           <option value="side-dish" id="side-dish">
@@ -44,7 +44,7 @@ function NewItem(props) {
           </option>
           <option value="drink" id="drink">
             Drink
-          </option>
+          </option> */}
           <option value="guest-name" id="guest-name">
             Guest Name
           </option>

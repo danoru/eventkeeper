@@ -8,7 +8,7 @@ const EVENTS = [
     date: "2022-10-22",
     image: "images/halloween-flyer.jpeg",
     flyer: "/images/halloween-flyer.jpeg",
-    isFeatured: true,
+    isFeatured: false,
   },
   {
     _id: { $oid: "6356c27c5cac4a56ab03d7f8" },
@@ -20,6 +20,16 @@ const EVENTS = [
     image: "images/halloween-flyer.jpeg",
     flyer: "/images/halloween-flyer.jpeg",
     isFeatured: false,
+  },
+  {
+    id: "sparks2301",
+    title: "Cody's Corner Crawfish Boil 2023",
+    description: "It's a crawfish boil!",
+    location: "Cody's Corner",
+    date: "2023-4-1",
+    image: "images/crawfishboil.jpg",
+    flyer: "/images/crawfishboil.jpg",
+    isFeatured: true,
   },
 ];
 
