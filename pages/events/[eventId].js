@@ -11,7 +11,9 @@ import NewItem from "../../src/components/input/new-item";
 function EventDetailPage(props) {
   const event = props.selectedEvent;
   const humanReadableDate = moment(event.date).format("dddd, MMMM Do YYYY");
-  const timeUntilDate = moment(event.date).startOf("day").fromNow();
+  const timeUntilDate = moment(event.date)
+    .startOf("MMMM Do YYYY, h:mm:ss a")
+    .fromNow();
 
   if (!event) {
     return (
