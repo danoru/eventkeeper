@@ -9,6 +9,7 @@ const EVENTS = [
     image: "images/halloween-flyer.jpeg",
     flyer: "/images/halloween-flyer.jpeg",
     isFeatured: false,
+    isGuestOnly: false,
   },
   {
     _id: { $oid: "63e0a755a0d5af8e23163406" },
@@ -19,7 +20,20 @@ const EVENTS = [
     date: "2023-04-01 14:00:00",
     image: "images/crawfishboil.jpg",
     flyer: "/images/crawfishboil.jpg",
+    isFeatured: false,
+    isGuestOnly: true,
+  },
+  {
+    _id: { $oid: "64359fa2ecb34b12b4864b2e" },
+    id: "sparks2302",
+    title: "Cody's Xth of July Party",
+    description: "It's a party with booms and barbecue! Date TBD",
+    location: "Cody's Corner",
+    date: "2023-07-04 14:00:00",
+    image: "images/fourthofjuly.jpg",
+    flyer: "/images/fourthofjuly.jpg",
     isFeatured: true,
+    isGuestOnly: false,
   },
 ];
 
