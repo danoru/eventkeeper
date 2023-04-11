@@ -23,7 +23,7 @@ function EventDetailPage(props) {
   };
   const checkRSVP = () => {
     if (humanReadableDate > moment().format("dddd, MMMM Do YYYY")) {
-      return <NewItem />;
+      return <NewItem {...props} />;
     } else if (humanReadableDate < moment().format("dddd, MMMM Do YYYY")) {
       return;
     }
@@ -51,14 +51,13 @@ function EventDetailPage(props) {
       </div>
       <Image src={event.flyer} width="450" height="450" />
       {checkRSVP()}
-      <EventRSVPList />
+      <EventRSVPList {...props} />
     </Fragment>
   );
 }
 
 export async function getStaticProps(context) {
   const eventId = context.params.eventId;
-
   const event = await getEventById(eventId);
 
   return {

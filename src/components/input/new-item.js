@@ -8,6 +8,43 @@ function NewItem(props) {
   const itemInputRef = useRef();
   const itemTypeInputRef = useRef();
 
+  const rsvp = props.selectedEvent.isGuestOnly;
+
+  const checkGuestOnly = () => {
+    if (rsvp) {
+      return (
+        <select htmlFor="item-type" id="item-type" ref={itemTypeInputRef}>
+          <option value="guest-name" id="guest-name">
+            Guest Name
+          </option>
+        </select>
+      );
+    } else {
+      return (
+        <select htmlFor="item-type" id="item-type" ref={itemTypeInputRef}>
+          <option value="main-dish" id="main-dish">
+            Main Dish
+          </option>
+          <option value="side-dish" id="side-dish">
+            Side Dish
+          </option>
+          <option value="snack" id="snack">
+            Snack
+          </option>
+          <option value="dessert" id="dessert">
+            Dessert
+          </option>
+          <option value="drink" id="drink">
+            Drink
+          </option>
+          <option value="guest-name" id="guest-name">
+            Guest Name
+          </option>
+        </select>
+      );
+    }
+  };
+
   function submitFormHandler() {
     // event.preventDefault();
 
@@ -36,26 +73,7 @@ function NewItem(props) {
     <div>
       <form onSubmit={submitFormHandler}>
         <label htmlFor="item">Add Item to Event List</label>
-        <select htmlFor="item-type" id="item-type" ref={itemTypeInputRef}>
-          {/* <option value="main-dish" id="main-dish">
-            Main Dish
-          </option>
-          <option value="side-dish" id="side-dish">
-            Side Dish
-          </option>
-          <option value="snack" id="snack">
-            Snack
-          </option>
-          <option value="dessert" id="dessert">
-            Dessert
-          </option>
-          <option value="drink" id="drink">
-            Drink
-          </option> */}
-          <option value="guest-name" id="guest-name">
-            Guest Name
-          </option>
-        </select>
+        {checkGuestOnly()}
         <input
           type="text"
           id="item"

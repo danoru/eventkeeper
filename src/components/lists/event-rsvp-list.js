@@ -12,6 +12,28 @@ function EventRSVPList(props) {
   const { eventId } = props;
   const [showItems, setShowItems] = useState(true);
   const [items, setItems] = useState([]);
+  const rsvp = props.selectedEvent.isGuestOnly;
+
+  const checkGuestOnly = () => {
+    if (rsvp) {
+      return (
+        <div className={classes.listContainer}>
+          {showItems && <GuestList items={items} />}
+        </div>
+      );
+    } else {
+      return (
+        <div className={classes.listContainer}>
+          {showItems && <MainDishList items={items} />}
+          {showItems && <SideDishList items={items} />}
+          {showItems && <SnackList items={items} />}
+          {showItems && <DessertList items={items} />}
+          {showItems && <DrinkList items={items} />}
+          {showItems && <GuestList items={items} />}
+        </div>
+      );
+    }
+  };
 
   useEffect(() => {
     if (showItems) {
@@ -24,16 +46,7 @@ function EventRSVPList(props) {
     }
   }, [showItems]);
 
-  return (
-    <div className={classes.listContainer}>
-      {/* {showItems && <MainDishList items={items} />}
-      {showItems && <SideDishList items={items} />}
-      {showItems && <SnackList items={items} />}
-      {showItems && <DessertList items={items} />}
-      {showItems && <DrinkList items={items} />} */}
-      {showItems && <GuestList items={items} />}
-    </div>
-  );
+  return <div>{checkGuestOnly()}</div>;
 }
 
 export default EventRSVPList;
