@@ -14,11 +14,18 @@ function EventDetailPage(props) {
   const timeUntilDate = moment(event.date)
     .startOf("MMMM Do YYYY, h:mm:ss a")
     .fromNow();
-  const checkTenseUntilDate = () => {
+  const checkTense = () => {
     if (humanReadableDate > moment().format("dddd, MMMM Do YYYY")) {
       return "is " + timeUntilDate;
     } else if (humanReadableDate < moment().format("dddd, MMMM Do YYYY")) {
       return "was " + timeUntilDate;
+    }
+  };
+  const checkRSVP = () => {
+    if (humanReadableDate > moment().format("dddd, MMMM Do YYYY")) {
+      return <NewItem />;
+    } else if (humanReadableDate < moment().format("dddd, MMMM Do YYYY")) {
+      return;
     }
   };
 
@@ -40,10 +47,10 @@ function EventDetailPage(props) {
       <div>
         <h1>{event.title}</h1>
         <h2>{humanReadableDate}</h2>
-        <h3>This event {checkTenseUntilDate()}.</h3>
+        <h3>This event {checkTense()}.</h3>
       </div>
       <Image src={event.flyer} width="450" height="450" />
-      <NewItem />
+      {checkRSVP()}
       <EventRSVPList />
     </Fragment>
   );
