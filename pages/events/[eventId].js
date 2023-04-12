@@ -10,21 +10,22 @@ import NewItem from "../../src/components/input/new-item";
 
 function EventDetailPage(props) {
   const event = props.selectedEvent;
+  const today = moment().format("dddd, MMMM Do YYYY");
   const humanReadableDate = moment(event.date).format("dddd, MMMM Do YYYY");
   const timeUntilDate = moment(event.date)
     .startOf("MMMM Do YYYY, h:mm:ss a")
     .fromNow();
   const checkTense = () => {
-    if (humanReadableDate > moment().format("dddd, MMMM Do YYYY")) {
+    if (moment(event.date).isSameOrAfter()) {
       return "is " + timeUntilDate;
-    } else if (humanReadableDate < moment().format("dddd, MMMM Do YYYY")) {
+    } else if (moment(event.date).isBefore()) {
       return "was " + timeUntilDate;
     }
   };
   const checkRSVP = () => {
-    if (humanReadableDate > moment().format("dddd, MMMM Do YYYY")) {
+    if (moment(event.date).isSameOrAfter()) {
       return <NewItem {...props} />;
-    } else if (humanReadableDate < moment().format("dddd, MMMM Do YYYY")) {
+    } else if (moment(event.date).isBefore()) {
       return;
     }
   };

@@ -29,7 +29,7 @@ const EVENTS = [
     title: "Cody's Xth of July Party",
     description: "It's a party with booms and barbecue! Date TBD",
     location: "Cody's Corner",
-    date: "2023-07-04 14:00:00",
+    date: "2023-07-04 16:00:00",
     image: "images/fourthofjuly.jpg",
     flyer: "/images/fourthofjuly.jpg",
     isFeatured: true,
