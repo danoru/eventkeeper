@@ -10,11 +10,14 @@ import NewItem from "../../src/components/input/new-item";
 
 function EventDetailPage(props) {
   const event = props.selectedEvent;
-  const today = moment().format("dddd, MMMM Do YYYY");
+  const pageTitle = "EventKeeper: " + event.title;
+
   const humanReadableDate = moment(event.date).format("dddd, MMMM Do YYYY");
+
   const timeUntilDate = moment(event.date)
     .startOf("MMMM Do YYYY, h:mm:ss a")
     .fromNow();
+
   const checkTense = () => {
     if (moment(event.date).isSameOrAfter()) {
       return "is " + timeUntilDate;
@@ -22,6 +25,7 @@ function EventDetailPage(props) {
       return "was " + timeUntilDate;
     }
   };
+
   const checkRSVP = () => {
     if (moment(event.date).isSameOrAfter()) {
       return <NewItem {...props} />;
@@ -41,7 +45,7 @@ function EventDetailPage(props) {
   return (
     <Fragment>
       <Head>
-        <title>EventKeeper: {event.title}</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={event.description} />
       </Head>
       {/* <AttendanceRegistration /> */}
