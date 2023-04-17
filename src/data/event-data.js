@@ -26,10 +26,11 @@ const EVENTS = [
   {
     _id: { $oid: "64359fa2ecb34b12b4864b2e" },
     id: "sparks2302",
-    title: "Cody's Xth of July Party",
-    description: "It's a party with booms and barbecue! Date TBD",
+    title: "Cody's (Almost) 4th of July Party",
+    description:
+      "It's a party with booms and barbecue! Official date still to be determined.",
     location: "Cody's Corner",
-    date: "2023-07-04 16:00:00",
+    date: "2023-07-01 16:00:00",
     image: "images/fourthofjuly.jpg",
     flyer: "/images/fourthofjuly.jpg",
     isFeatured: true,
