@@ -6,33 +6,25 @@ function GuestList(props) {
 
   const eventId = router.query.eventId;
 
-  const guestStorage = {};
-  let guestCount = 0;
+  const rsvpList = items
+    ?.filter(
+      (item) =>
+        item.itemEntry.itemType === "guest-name" &&
+        item.itemEntry.eventId === eventId
+    )
+    .map((item) => (
+      <li key={item._id}>
+        <p>{item.itemEntry.item}</p>
+      </li>
+    ));
 
-  items.forEach(() => {
-    if (!guestStorage[items.item]) {
-      guestStorage[items.item] = 1;
-      guestCount++;
-    }
-  });
+  let guestCount = rsvpList.length;
 
   return (
     <div>
       <h3>Guest List ({guestCount})</h3>
       <div>
-        <ul>
-          {items
-            ?.filter(
-              (item) =>
-                item.itemEntry.itemType === "guest-name" &&
-                item.itemEntry.eventId === eventId
-            )
-            .map((item) => (
-              <li key={item._id}>
-                <p>{item.itemEntry.item}</p>
-              </li>
-            ))}
-        </ul>
+        <ul>{rsvpList}</ul>
       </div>
     </div>
   );
