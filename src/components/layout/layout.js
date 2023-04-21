@@ -1,11 +1,11 @@
 import { Fragment } from "react";
 
-import Header from "./header";
+import Navbar from "./navbar";
 
 function Layout(props) {
   return (
     <Fragment>
-      <Header />
+      <Navbar />
       <main>{props.children}</main>
     </Fragment>
   );
