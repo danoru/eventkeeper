@@ -1,11 +1,22 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
 
-import { getAllEvents } from "../../src/data/event-data";
 import EventList from "../../src/components/events/event-list";
 
 function EventsPage(props) {
   const { events } = props;
+  const [eventList, setEventList] = useState([]);
+
+  useEffect(() => {
+    if (eventList) {
+      fetch("/api/getEvents")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setEventList(data.events);
+        });
+    }
+  }, [eventList]);
 
   return (
     <Fragment>
@@ -21,15 +32,29 @@ function EventsPage(props) {
   );
 }
 
-export async function getStaticProps() {
-  const events = await getAllEvents();
+// export async function getStaticProps() {
+//   // try {
 
-  return {
-    props: {
-      events: events,
-    },
-    revalidate: 60,
-  };
-}
+//   // useEffect(() => {
+//   //   if (eventList) {
+//   //     fetch("/api/getEvents")
+//   //       .then((response) => response.json())
+//   //       .then((data) => {
+//   //         console.log(data);
+//   //         setEventList(data.events);
+//   //       });
+//   //   }
+//   // }, [showEventList]);
+
+//   return {
+//     props: {
+//       events: eventData,
+//     },
+//     revalidate: 60,
+//   };
+//   // } catch (e) {
+//   //   console.error(e);
+//   // }
+// }
 
 export default EventsPage;
