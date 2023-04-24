@@ -28,13 +28,13 @@ function AdminMenu() {
 
   return (
     <Box>
-      <Tooltip title="Open settings">
+      <Tooltip title="Admin Controls">
         <IconButton onClick={handleOpenAdminMenu} sx={{ p: 0 }}>
           <Avatar alt="Admin" />
         </IconButton>
       </Tooltip>
       <Menu
-        sx={{ mt: "45px" }}
+        sx={{ mt: "45px", textDecoration: "none" }}
         id="menu-appbar"
         anchorEl={anchorElAdmin}
         anchorOrigin={{

@@ -1,5 +1,4 @@
 import * as React from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -11,7 +10,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 
 import AdminMenu from "./admin-menu";
 import classes from "./navbar.module.css";
@@ -96,8 +94,13 @@ function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page.id} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <a href={page.link}>{page.title}</a>
+                  <Typography textAlign="center" textDecoration="none">
+                    <a
+                      href={page.link}
+                      style={{ textDecoration: "none", color: "white" }}
+                    >
+                      {page.title}
+                    </a>
                   </Typography>
                 </MenuItem>
               ))}
@@ -108,9 +111,19 @@ function Navbar() {
               <Button
                 key={page.id}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  textDecoration: "none",
+                }}
               >
-                <a href={page.link}>{page.title}</a>
+                <a
+                  href={page.link}
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  {page.title}
+                </a>
               </Button>
             ))}
           </Box>
