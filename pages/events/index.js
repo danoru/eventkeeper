@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import Head from "next/head";
 
-import { getAllEvents } from "../../src/data/event-data";
 import EventList from "../../src/components/events/event-list";
 
 function EventsPage(props) {
@@ -21,25 +20,18 @@ function EventsPage(props) {
   );
 }
 
-export async function getStaticProps() {
-  // try {
-  // await fetch("/api/getEvents")
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //     return data;
-  //   });
-  const events = await getAllEvents();
+export async function getServerSideProps(context) {
+  let dev = process.env.NODE_ENV !== "production";
+  let { DEV_URL, PROD_URL } = process.env;
+
+  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/events`);
+  let data = await response.json();
 
   return {
     props: {
-      events: events,
+      events: data,
     },
-    revalidate: 60,
   };
-  // } catch (e) {
-  //   console.error(e);
-  // }
 }
 
 export default EventsPage;
