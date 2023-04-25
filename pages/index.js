@@ -20,14 +20,17 @@ function HomePage(props) {
   );
 }
 
-export async function getStaticProps() {
-  const featuredEvents = await getFeaturedEvents();
+export async function getServerSideProps(context) {
+  let dev = process.env.NODE_ENV !== "production";
+  let { DEV_URL, PROD_URL } = process.env;
+
+  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/events/featured`);
+  let data = await response.json();
 
   return {
     props: {
-      events: featuredEvents,
+      events: data,
     },
-    revalidate: 1800,
   };
 }
 

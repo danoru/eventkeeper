@@ -3,7 +3,7 @@ import {
   getAllDocuments,
   getFilteredDocuments,
   insertDocument,
-} from "../../src/helpers/db-util";
+} from "../../../src/helpers/db-util";
 
 async function handler(req, res) {
   let client;
@@ -16,19 +16,8 @@ async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    //   if (!itemType || !item || item.trim() === "") {
-    //     res.status(422).json({ message: "Invalid input" });
-    //     return;
-    //   }
-    //   try {
-    //     await insertDocument(client, "attendance", { itemEntry: newItemEntry });
-    //     client.close();
-    //   } catch (error) {
-    res.status(500).json({ message: "Inserting data failed." });
+    res.status(500).json({ message: "Inserting data not allowed." });
     return;
-    //   }
-    // res.status(201).json({ message: "Item added successfully." });
-    // return;
   }
 
   if (req.method === "GET") {
@@ -36,7 +25,7 @@ async function handler(req, res) {
       const documents = await getFilteredDocuments(
         client,
         "events",
-        {},
+        { isFeatured: true },
         { _id: -1 }
       );
       res.status(200).json(documents);
