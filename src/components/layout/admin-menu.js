@@ -1,13 +1,32 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
+import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+
+import { useRouter } from "next/router";
 
 function AdminMenu() {
+  const router = useRouter();
+  const eventId = router.query.eventId;
+
+  let [adminData, setAdminData] = useState(null);
+
+  useEffect(() => {
+    console.log("If it works, this should be shown!");
+    fetch("/api/" + eventId)
+      .then((response) => response.json())
+      .then((data) => {
+        setAdminData(data);
+        console.log(adminData);
+      });
+  }, []);
+
+  const isGuestOnly = adminData?.map((adminData) => adminData.isGuestOnly);
+
   const [anchorElAdmin, setAnchorElAdmin] = React.useState(null);
 
   const handleOpenAdminMenu = (event) => {
@@ -18,7 +37,7 @@ function AdminMenu() {
     setAnchorElAdmin(null);
   };
 
-  let guestOnlyStatus = "Guest Only: True";
+  let guestOnlyStatus = "Guest Only: " + isGuestOnlyHumanReadable;
 
   const toggleGuestOnly = () => {};
 
