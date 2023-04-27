@@ -97,7 +97,7 @@ function Navbar() {
                   <Typography textAlign="center" textDecoration="none">
                     <a
                       href={page.link}
-                      style={{ textDecoration: "none", color: "white" }}
+                      style={{ textDecoration: "none", color: "black" }}
                     >
                       {page.title}
                     </a>
