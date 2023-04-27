@@ -17,6 +17,23 @@ async function handler(req, res) {
     return;
   }
 
+  if (req.method === "POST") {
+    try {
+      if (isGuestOnly === true) {
+        await insertDocument(client, "events", { isGuestOnly: false });
+        client.close();
+      } else if (isGuestOnly === false) {
+        await insertDocument(client, "events", { isGuestOnly: true });
+        client.close();
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Updating data failed." });
+      return;
+    }
+    res.status(201).json({ message: "Updated item successfully." });
+    return;
+  }
+
   if (req.method === "GET") {
     try {
       const documents = await getFilteredDocuments(

@@ -4,13 +4,16 @@ import Image from "next/image";
 import moment from "moment";
 
 // import AttendanceRegistration from "../components/input/attendance-registration";
-import { getFeaturedEvents, getEventById } from "../../src/data/event-data";
 import EventRSVPList from "../../src/components/lists/event-rsvp-list";
+import HostRecommendations from "../../src/components/recommendations/host-recommendations";
 import NewItem from "../../src/components/input/new-item";
 
 function EventDetailPage(props) {
-  const event = props.selectedEvent;
+  const [event] = props.data;
+
   const pageTitle = "EventKeeper: " + event.title;
+
+  console.log(event);
 
   const humanReadableDate = moment(event.date).format("dddd, MMMM Do YYYY");
 
@@ -55,33 +58,68 @@ function EventDetailPage(props) {
         <h3>This event {checkTense()}.</h3>
       </div>
       <Image src={event.flyer} width="450" height="450" />
+      <HostRecommendations />
       {checkRSVP()}
       <EventRSVPList {...props} />
     </Fragment>
   );
 }
 
-export async function getStaticProps(context) {
-  const eventId = context.params.eventId;
-  const event = await getEventById(eventId);
+export async function getStaticProps({ params }) {
+  const eventId = params.eventId;
+
+  let dev = process.env.NODE_ENV !== "production";
+  let { DEV_URL, PROD_URL } = process.env;
+
+  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/` + eventId);
+  let data = await response.json();
 
   return {
     props: {
-      selectedEvent: event,
+      data,
     },
     revalidate: 30,
   };
 }
 
 export async function getStaticPaths() {
-  const events = await getFeaturedEvents();
+  const eventId = "sparks2501";
 
-  const paths = events.map((event) => ({ params: { eventId: event.id } }));
+  let dev = process.env.NODE_ENV !== "production";
+  let { DEV_URL, PROD_URL } = process.env;
+
+  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/` + eventId);
+  let data = await response.json();
+
+  const paths = data.map((event) => ({ params: { eventId: event.id } }));
 
   return {
     paths: paths,
     fallback: "blocking",
   };
 }
+
+// export async function getStaticProps(context) {
+//   const eventId = context.params.eventId;
+//   const event = await getEventById(eventId);
+
+//   return {
+//     props: {
+//       selectedEvent: event,
+//     },
+//     revalidate: 30,
+//   };
+// }
+
+// export async function getStaticPaths() {
+//   const events = await getFeaturedEvents();
+
+//   const paths = events.map((event) => ({ params: { eventId: event.id } }));
+
+//   return {
+//     paths: paths,
+//     fallback: "blocking",
+//   };
+// }
 
 export default EventDetailPage;

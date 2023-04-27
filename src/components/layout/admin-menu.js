@@ -21,13 +21,23 @@ function AdminMenu() {
       .then((response) => response.json())
       .then((data) => {
         setAdminData(data);
-        console.log(adminData);
       });
   }, []);
 
   const isGuestOnly = adminData?.map((adminData) => adminData.isGuestOnly);
+  let guestOnlyStatus = "Guest Only: " + isGuestOnly;
 
-  console.log(typeof isGuestOnly);
+  const toggleGuestOnly = () => {
+    let [rsvpStatus, setRSVPStatus] = useState(isGuestOnly);
+
+    useEffect(() => {
+      fetch("/api/" + eventId)
+        .then((response) => response.json())
+        .then((data) => {
+          setRSVPStatus(data);
+        });
+    }, []);
+  };
 
   const [anchorElAdmin, setAnchorElAdmin] = React.useState(null);
 
@@ -38,10 +48,6 @@ function AdminMenu() {
   const handleCloseAdminMenu = () => {
     setAnchorElAdmin(null);
   };
-
-  let guestOnlyStatus = "Guest Only: " + isGuestOnly;
-
-  const toggleGuestOnly = () => {};
 
   const settings = [
     { id: 1, title: guestOnlyStatus, onClick: toggleGuestOnly() },

@@ -8,7 +8,7 @@ function NewItem(props) {
   const itemInputRef = useRef();
   const itemTypeInputRef = useRef();
 
-  const rsvp = props.selectedEvent.isGuestOnly;
+  const rsvp = props.isGuestOnly;
 
   const checkGuestOnly = () => {
     if (rsvp) {

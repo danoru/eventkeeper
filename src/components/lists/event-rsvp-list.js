@@ -12,7 +12,7 @@ function EventRSVPList(props) {
   const { eventId } = props;
   const [showItems, setShowItems] = useState(true);
   const [items, setItems] = useState([]);
-  const rsvp = props.selectedEvent.isGuestOnly;
+  const rsvp = props.data.isGuestOnly;
 
   const checkGuestOnly = () => {
     if (rsvp) {
@@ -40,7 +40,6 @@ function EventRSVPList(props) {
       fetch("/api/" + eventId + "/rsvp")
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setItems(data.attendance);
         });
     }
