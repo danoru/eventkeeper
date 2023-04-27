@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import DessertList from "./dessert-list";
 import DrinkList from "./drink-list";
@@ -9,10 +10,13 @@ import SnackList from "./snack-list";
 import classes from "./event-rsvp-list.module.css";
 
 function EventRSVPList(props) {
-  const { eventId } = props;
+  const router = useRouter();
+  const eventId = router.query.eventId;
+  const [event] = props.data;
+
   const [showItems, setShowItems] = useState(true);
   const [items, setItems] = useState([]);
-  const rsvp = props.data.isGuestOnly;
+  const rsvp = event.isGuestOnly;
 
   const checkGuestOnly = () => {
     if (rsvp) {
