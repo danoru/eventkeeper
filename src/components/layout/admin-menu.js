@@ -27,6 +27,8 @@ function AdminMenu() {
 
   const isGuestOnly = adminData?.map((adminData) => adminData.isGuestOnly);
 
+  console.log(typeof isGuestOnly);
+
   const [anchorElAdmin, setAnchorElAdmin] = React.useState(null);
 
   const handleOpenAdminMenu = (event) => {
@@ -37,7 +39,7 @@ function AdminMenu() {
     setAnchorElAdmin(null);
   };
 
-  let guestOnlyStatus = "Guest Only: " + isGuestOnlyHumanReadable;
+  let guestOnlyStatus = "Guest Only: " + isGuestOnly;
 
   const toggleGuestOnly = () => {};
 
