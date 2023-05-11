@@ -14,10 +14,10 @@ export async function insertDocument(client, collection, document) {
   return result;
 }
 
-export async function updateDocument(client, collection, document) {
+export async function updateDocument(client, collection, filter, document) {
   const db = client.db();
 
-  const result = await db.collection(collection).updateOne(document);
+  const result = await db.collection(collection).updateOne(filter, document);
 
   return result;
 }
