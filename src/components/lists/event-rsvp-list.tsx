@@ -9,7 +9,7 @@ import SideDishList from "./side-dish-list";
 import SnackList from "./snack-list";
 import classes from "./event-rsvp-list.module.css";
 
-function EventRSVPList(props) {
+function EventRSVPList(props: any) {
   const router = useRouter();
   const eventId = router.query.eventId;
   const [event] = props.data;

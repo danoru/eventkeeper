@@ -2,7 +2,7 @@ import { Fragment } from "react";
 
 import Navbar from "./navbar";
 
-function Layout(props) {
+function Layout(props: any) {
   return (
     <Fragment>
       <Navbar />

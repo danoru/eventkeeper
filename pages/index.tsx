@@ -4,7 +4,7 @@ import Head from "next/head";
 
 import EventList from "../src/components/events/event-list";
 
-function HomePage(props) {
+function HomePage(props: any) {
   return (
     <div>
       <Head>
@@ -19,7 +19,7 @@ function HomePage(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   let dev = process.env.NODE_ENV !== "production";
   let { DEV_URL, PROD_URL } = process.env;
 

@@ -1,23 +1,24 @@
 import { useRouter } from "next/router";
 
-function SideDishList(props) {
+function DessertList(props: any) {
   const { items } = props;
+
   const router = useRouter();
 
   const eventId = router.query.eventId;
 
   return (
     <div>
-      <h3>Side Dishes</h3>
+      <h3>Desserts</h3>
       <div>
         <ul>
           {items
             ?.filter(
-              (item) =>
-                item.itemEntry.itemType === "side-dish" &&
+              (item: any) =>
+                item.itemEntry.itemType === "dessert" &&
                 item.itemEntry.eventId === eventId
             )
-            .map((item) => (
+            .map((item: any) => (
               <li key={item._id}>
                 <p>{item.itemEntry.item}</p>
               </li>
@@ -28,4 +29,4 @@ function SideDishList(props) {
   );
 }
 
-export default SideDishList;
+export default DessertList;

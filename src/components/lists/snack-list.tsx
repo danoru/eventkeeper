@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-function SnackList(props) {
+function SnackList(props: any) {
   const { items } = props;
   const router = useRouter();
 
@@ -13,11 +13,11 @@ function SnackList(props) {
         <ul>
           {items
             ?.filter(
-              (item) =>
+              (item: any) =>
                 item.itemEntry.itemType === "snack" &&
                 item.itemEntry.eventId === eventId
             )
-            .map((item) => (
+            .map((item: any) => (
               <li key={item._id}>
                 <p>{item.itemEntry.item}</p>
               </li>

@@ -19,7 +19,7 @@ const pages = [{ id: 1, title: "Browse All Events", link: "/events" }];
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
+  const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
   };
 
@@ -94,7 +94,10 @@ function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page.id} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" textDecoration="none">
+                  <Typography
+                    textAlign="center"
+                    sx={{ textDecoration: "none" }}
+                  >
                     <a
                       href={page.link}
                       style={{ textDecoration: "none", color: "black" }}
