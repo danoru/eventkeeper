@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
-import AdminMenu from "./admin-menu";
+// import AdminMenu from "./admin-menu";
 import classes from "./navbar.module.css";
 
 const pages = [{ id: 1, title: "Browse All Events", link: "/events" }];
@@ -32,11 +32,7 @@ function Navbar() {
     const eventId = router.query.eventId;
 
     if (eventId) {
-      return (
-        <li>
-          <AdminMenu />
-        </li>
-      );
+      return <li>{/* <AdminMenu /> */}</li>;
     } else {
       return;
     }
