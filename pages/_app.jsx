@@ -7,7 +7,7 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 
 import Layout from "../src/components/layout/layout";
-import createEmotionCache from "../src/createEmotionCache.js";
+import createEmotionCache from "../src/createEmotionCache";
 import theme from "../src/styles/theme";
 import "../src/styles/global.css";
 
