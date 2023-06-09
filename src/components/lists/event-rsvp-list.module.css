@@ -3,3 +3,14 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+@media (max-width: 600px) {
+
+  .listContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+}
