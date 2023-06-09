@@ -22,6 +22,9 @@ function NewItem(props) {
     } else {
       return (
         <select htmlFor="item-type" id="item-type" ref={itemTypeInputRef}>
+          <option value="guest-name" id="guest-name">
+            Guest Name
+          </option>
           <option value="main-dish" id="main-dish">
             Main Dish
           </option>
@@ -36,9 +39,6 @@ function NewItem(props) {
           </option>
           <option value="drink" id="drink">
             Drink
-          </option>
-          <option value="guest-name" id="guest-name">
-            Guest Name
           </option>
         </select>
       );
