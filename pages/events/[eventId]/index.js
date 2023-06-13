@@ -4,9 +4,9 @@ import Image from "next/image";
 import moment from "moment";
 
 // import AttendanceRegistration from "../components/input/attendance-registration";
-import EventRSVPList from "../../src/components/lists/event-rsvp-list";
-// import HostRecommendations from "../../src/components/recommendations/host-recommendations";
-import NewItem from "../../src/components/input/new-item";
+import EventRSVPList from "../../../src/components/lists/event-rsvp-list";
+import HostRecommendations from "../../../src/components/recommendations/host-recommendations";
+import NewItem from "../../../src/components/input/new-item";
 
 function EventDetailPage(props) {
   const [event] = props.data;
@@ -56,7 +56,7 @@ function EventDetailPage(props) {
         <h3>This event {checkTense()}.</h3>
       </div>
       <Image src={event.flyer} width="450" height="450" />
-      {/* <HostRecommendations /> */}
+      <HostRecommendations />
       {checkRSVP()}
       <EventRSVPList {...props} />
     </Fragment>

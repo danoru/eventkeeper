@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 
 import DessertList from "./dessert-list";
 import DrinkList from "./drink-list";
-import MainDishList from "./main-dish-list";
 import GuestList from "./guest-list";
+import MainDishList from "./main-dish-list";
 import SideDishList from "./side-dish-list";
 import SnackList from "./snack-list";
 import classes from "./event-rsvp-list.module.css";
