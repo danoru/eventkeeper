@@ -4,9 +4,9 @@ import Image from "next/image";
 import moment from "moment";
 
 // import AttendanceRegistration from "../components/input/attendance-registration";
-import EventRSVPList from "../../src/components/lists/event-rsvp-list";
-import HostRecommendations from "../../src/components/recommendations/host-recommendations";
-import NewItem from "../../src/components/input/new-item";
+import EventRSVPList from "../../../src/components/lists/event-rsvp-list";
+import HostRecommendations from "../../../src/components/recommendations/host-recommendations";
+import NewItem from "../../../src/components/input/new-item";
 
 function EventDetailPage(props) {
   const [event] = props.data;
@@ -80,13 +80,13 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export async function getStaticPaths() {
-  const eventId = "sparks2501";
+export async function getStaticPaths(props) {
+  const eventId = props.eventId;
 
   let dev = process.env.NODE_ENV !== "production";
   let { DEV_URL, PROD_URL } = process.env;
 
-  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/` + eventId);
+  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/${eventId}`);
   let data = await response.json();
 
   const paths = data.map((event) => ({ params: { eventId: event.id } }));
