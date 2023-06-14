@@ -5,7 +5,7 @@ import moment from "moment";
 
 // import AttendanceRegistration from "../components/input/attendance-registration";
 import EventRSVPList from "../../../src/components/lists/event-rsvp-list";
-import HostRecommendations from "../../../src/components/recommendations/host-recommendations";
+import HostRecommendations from "../../../src/components/admin/host-recommendations";
 import NewItem from "../../../src/components/input/new-item";
 
 function EventDetailPage(props) {
