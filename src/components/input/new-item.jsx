@@ -77,7 +77,7 @@ function NewItem(props) {
         <input
           type="text"
           id="item"
-          placeholder="Add Guest"
+          placeholder="Add Item"
           ref={itemInputRef}
         />
         <button>Submit</button>
