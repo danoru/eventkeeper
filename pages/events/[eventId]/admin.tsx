@@ -1,3 +1,12 @@
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -7,37 +16,78 @@ function AdminPage() {
   const router = useRouter();
   const eventLink = "/events/" + router.query.eventId;
 
-  const [password, setPassword] = useState("");
+  const [errorStatus, setErrorStatus] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  function submitFormHandler(e: any) {
-    e.preventDefault;
-    if (password === "sparks23") {
-      setLoggedIn(true);
-    } else {
-      alert("Incorrect password.");
-    }
-  }
+  const passwordError = errorStatus ? "Incorrect password." : "";
+
+  const clickShowPasswordHandler = () => setShowPassword((show) => !show);
+
+  const mouseDownPasswordHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+  };
 
   const passwordHandler = (e: any) => {
     setPassword(e.target.value);
   };
 
+  function submitFormHandler(e: any) {
+    e.preventDefault();
+    if (password === "sparks23") {
+      setLoggedIn(true);
+    } else {
+      setErrorStatus(true);
+      setPassword("");
+    }
+  }
+
   if (!loggedIn) {
     return (
-      <div>
+      <div
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
         <form onSubmit={submitFormHandler}>
-          <input
-            type="text"
-            placeholder="Enter Password"
-            onChange={passwordHandler}
-          />
-          <button type="submit">Submit</button>
+          <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              error={errorStatus}
+              id="outlined-adornment-password"
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              onChange={passwordHandler}
+              value={password}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={clickShowPasswordHandler}
+                    onMouseDown={mouseDownPasswordHandler}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            <FormHelperText error id="password-error">
+              {passwordError}
+            </FormHelperText>
+            <Button variant="contained" type="submit">
+              Log In
+            </Button>
+          </FormControl>
         </form>
         <div>
-          <a href={eventLink} style={{ textDecorationLine: "none" }}>
-            Back to Event
-          </a>
+          <Button href={eventLink}>Return to Event</Button>
         </div>
       </div>
     );
@@ -50,9 +100,7 @@ function AdminPage() {
         <AdminItem />
       </div>
       <div>
-        <a href={eventLink} style={{ textDecorationLine: "none" }}>
-          Back to Event
-        </a>
+        <Button href={eventLink}>Return to Event</Button>
       </div>
     </div>
   );
