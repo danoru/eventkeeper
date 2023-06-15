@@ -6,7 +6,6 @@ import Select from "@mui/material/Select";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import dynamic from "next/dynamic";
 
 function AdminItem(props) {
   const { eventId } = props;
