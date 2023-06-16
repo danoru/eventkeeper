@@ -5,14 +5,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 function NewItem(props) {
   const { eventId } = props;
   const router = useRouter();
-
-  const itemInputRef = useRef();
-  const itemTypeInputRef = useRef();
 
   const [itemType, setItemType] = useState("");
   const [item, setItem] = useState("");
