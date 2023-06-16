@@ -10,7 +10,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import AdminItem from "../../../src/components/input/admin-item";
+import AdminItem from "../../../src/components/admin/admin-item";
+import GuestOnlyToggle from "../../../src/components/admin/guest-only-toggle";
 
 function AdminPage() {
   const router = useRouter();
@@ -96,8 +97,12 @@ function AdminPage() {
   return (
     <div>
       <div>
-        <h1>Host Recommendations</h1>
+        <h2>Host Recommendations</h2>
         <AdminItem />
+      </div>
+      <div>
+        <h2>Event Options</h2>
+        <GuestOnlyToggle />
       </div>
       <div>
         <Button href={eventLink}>Return to Event</Button>
