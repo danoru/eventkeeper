@@ -47,7 +47,9 @@ function GuestOnlyToggle(props) {
       <FormControlLabel
         label="Guest Only"
         labelPlacement="start"
-        control={<Switch checked={isChecked} onClick={switchHandler} />}
+        control={
+          <Switch disabled checked={isChecked} onClick={switchHandler} />
+        }
         sx={{ margin: "auto" }}
       />
     </FormGroup>

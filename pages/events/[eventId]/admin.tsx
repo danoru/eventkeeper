@@ -115,19 +115,3 @@ function AdminPage(props: any) {
 }
 
 export default AdminPage;
-
-export async function getServerSideProps(context: any) {
-  let dev = process.env.NODE_ENV !== "production";
-  let { DEV_URL, PROD_URL } = process.env;
-
-  const eventId = context.query.eventId;
-
-  const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/${eventId}`);
-  const data = await response.json();
-
-  return {
-    props: {
-      data,
-    },
-  };
-}
