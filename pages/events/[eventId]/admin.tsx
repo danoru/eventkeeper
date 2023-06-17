@@ -8,14 +8,16 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AdminItem from "../../../src/components/admin/admin-item";
+import FeaturedToggle from "../../../src/components/admin/featured-toggle";
 import GuestOnlyToggle from "../../../src/components/admin/guest-only-toggle";
 
-function AdminPage() {
+function AdminPage(props: any) {
   const router = useRouter();
-  const eventLink = "/events/" + router.query.eventId;
+  const eventId = router.query.eventId;
+  const eventLink = "/events/" + eventId;
 
   const [errorStatus, setErrorStatus] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -102,9 +104,10 @@ function AdminPage() {
       </div>
       <div>
         <h2>Event Options</h2>
-        <GuestOnlyToggle />
+        <FeaturedToggle />
+        <GuestOnlyToggle {...props} />
       </div>
-      <div>
+      <div style={{ marginTop: "15px" }}>
         <Button href={eventLink}>Return to Event</Button>
       </div>
     </div>
@@ -112,3 +115,19 @@ function AdminPage() {
 }
 
 export default AdminPage;
+
+export async function getServerSideProps(context: any) {
+  let dev = process.env.NODE_ENV !== "production";
+  let { DEV_URL, PROD_URL } = process.env;
+
+  const eventId = context.query.eventId;
+
+  const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/${eventId}`);
+  const data = await response.json();
+
+  return {
+    props: {
+      data,
+    },
+  };
+}

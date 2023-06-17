@@ -5,11 +5,11 @@ import Switch from "@mui/material/Switch";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-function GuestOnlyToggle(props) {
+function FeaturedToggle() {
   const router = useRouter();
   const eventId = router.query.eventId;
 
-  // const [adminData, setAdminData] = useState(null);
+  // let [adminData, setAdminData] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
@@ -17,16 +17,16 @@ function GuestOnlyToggle(props) {
       .then((response) => response.json())
       .then((data) => {
         // setAdminData(data);
-        setIsChecked(data?.[0]?.isGuestOnly);
+        setIsChecked(data?.[0]?.isFeatured);
       });
   }, []);
 
-  const toggleGuestOnly = () => {
+  const toggleFeaturedEvent = () => {
     fetch("/api/" + eventId + "/toggleGuestOnly", {
-      method: "PUT",
+      method: "POST",
       body: JSON.stringify({
         // id: eventId,
-        isGuestOnly: isChecked,
+        isFeatured: isChecked,
       }),
       headers: {
         "Content-Type": "applicaton/json",
@@ -39,19 +39,21 @@ function GuestOnlyToggle(props) {
   const switchHandler = (e) => {
     const toggleValue = e.target.checked;
     setIsChecked(toggleValue);
-    toggleGuestOnly(toggleValue);
+    toggleFeaturedEvent(toggleValue);
   };
 
   return (
     <FormGroup>
       <FormControlLabel
-        label="Guest Only"
+        label="Featured Event"
         labelPlacement="start"
-        control={<Switch checked={isChecked} onClick={switchHandler} />}
+        control={
+          <Switch disabled checked={isChecked} onChange={switchHandler} />
+        }
         sx={{ margin: "auto" }}
       />
     </FormGroup>
   );
 }
 
-export default GuestOnlyToggle;
+export default FeaturedToggle;

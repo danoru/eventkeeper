@@ -12,7 +12,7 @@ async function handler(req, res) {
     res.status(500).json({ message: "Connecting to the database failed." });
     return;
   }
-  if (req.method === "POST") {
+  if (req.method === "PUT") {
     try {
       await updateDocument(
         client,
