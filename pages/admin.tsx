@@ -1,6 +1,4 @@
-import Backdrop from "@mui/material/Backdrop";
 import Button from "@mui/material/Button";
-import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -9,20 +7,10 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
-import AdminItem from "../../../src/components/admin/admin-item";
-import FeaturedToggle from "../../../src/components/admin/featured-toggle";
-import GuestOnlyToggle from "../../../src/components/admin/guest-only-toggle";
-
-function EventSettings() {
-  const router = useRouter();
-  const eventId = router.query.eventId;
-  const eventLink = "/events/" + eventId;
-
+function AdminSettings() {
   const [errorStatus, setErrorStatus] = useState(false);
-  const [loadingStatus, setLoadingStatus] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -93,7 +81,7 @@ function EventSettings() {
           </FormControl>
         </form>
         <div>
-          <Button href={eventLink}>Return to Event</Button>
+          <Button href="/">Return to Main</Button>
         </div>
       </div>
     );
@@ -101,27 +89,14 @@ function EventSettings() {
 
   return (
     <div>
-      <h1>Event Settings for {eventId}</h1>
-      <Backdrop
-        open={loadingStatus}
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
       <div>
-        <h2>Host Recommendations</h2>
-        <AdminItem />
-      </div>
-      <div>
-        <h2>Event Options</h2>
-        <FeaturedToggle />
-        <GuestOnlyToggle setLoadingStatus={setLoadingStatus} />
+        <Button>Create New Event</Button>
       </div>
       <div style={{ marginTop: "15px" }}>
-        <Button href={eventLink}>Return to Event</Button>
+        <Button href="/">Return to Event</Button>
       </div>
     </div>
   );
 }
 
-export default EventSettings;
+export default AdminSettings;

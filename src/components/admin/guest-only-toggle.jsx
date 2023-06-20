@@ -5,18 +5,20 @@ import Switch from "@mui/material/Switch";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-function GuestOnlyToggle() {
+function GuestOnlyToggle(props) {
   const router = useRouter();
   const eventId = router.query.eventId;
+  const { setLoadingStatus } = props;
 
-  // const [adminData, setAdminData] = useState(null);
+  const [adminData, setAdminData] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     fetch("/api/" + eventId, { method: "GET" })
       .then((response) => response.json())
       .then((data) => {
-        // setAdminData(data);
+        setAdminData(data);
+        setLoadingStatus(false);
         setIsChecked(data?.[0]?.isGuestOnly);
       });
   }, []);
