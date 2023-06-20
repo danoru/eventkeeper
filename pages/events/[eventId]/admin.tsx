@@ -98,6 +98,7 @@ function EventSettings() {
 
   return (
     <div>
+      <h1>Event Settings for {eventId}</h1>
       <div>
         <h2>Host Recommendations</h2>
         <AdminItem />
