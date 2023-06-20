@@ -47,7 +47,9 @@ function FeaturedToggle() {
       <FormControlLabel
         label="Featured Event"
         labelPlacement="start"
-        control={<Switch checked={isChecked} onChange={switchHandler} />}
+        control={
+          <Switch disabled checked={isChecked} onChange={switchHandler} />
+        }
         sx={{ margin: "auto" }}
       />
     </FormGroup>
