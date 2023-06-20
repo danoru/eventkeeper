@@ -5,6 +5,7 @@ async function handler(req, res) {
 
   const id = req.body.id;
   const isGuestOnly = req.body.isGuestOnly;
+  const isFeatured = req.body.isFeatured;
 
   try {
     client = await connectDatabase();

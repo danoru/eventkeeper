@@ -22,14 +22,14 @@ function FeaturedToggle() {
   }, []);
 
   const toggleFeaturedEvent = () => {
-    fetch("/api/" + eventId + "/toggleGuestOnly", {
-      method: "POST",
+    fetch("/api/" + eventId + "/toggleValues", {
+      method: "PUT",
       body: JSON.stringify({
-        // id: eventId,
+        id: eventId,
         isFeatured: isChecked,
       }),
       headers: {
-        "Content-Type": "applicaton/json",
+        "Content-Type": "application/json",
       },
     })
       .then((response) => response.json())
