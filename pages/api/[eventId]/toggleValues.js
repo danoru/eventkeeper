@@ -15,13 +15,23 @@ async function handler(req, res) {
   }
   if (req.method === "PUT") {
     try {
-      await updateDocument(
-        client,
-        "events",
-        { id: id },
-        { $set: { isGuestOnly: isGuestOnly } }
-      );
-      client.close();
+      if (isGuestOnly) {
+        await updateDocument(
+          client,
+          "events",
+          { id: id },
+          { $set: { isGuestOnly: isGuestOnly } }
+        );
+        client.close();
+      } else if (isFeatured) {
+        await updateDocument(
+          client,
+          "events",
+          { id: id },
+          { $set: { isFeatured: isFeatured } }
+        );
+        client.close();
+      }
     } catch (error) {
       res.status(500).json({ message: "Updating data failed." });
       return;
