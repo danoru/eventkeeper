@@ -8,13 +8,13 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import AdminItem from "../../../src/components/admin/admin-item";
 import FeaturedToggle from "../../../src/components/admin/featured-toggle";
 import GuestOnlyToggle from "../../../src/components/admin/guest-only-toggle";
 
-function AdminPage(props: any) {
+function EventSettings() {
   const router = useRouter();
   const eventId = router.query.eventId;
   const eventLink = "/events/" + eventId;
@@ -105,7 +105,7 @@ function AdminPage(props: any) {
       <div>
         <h2>Event Options</h2>
         <FeaturedToggle />
-        <GuestOnlyToggle {...props} />
+        <GuestOnlyToggle />
       </div>
       <div style={{ marginTop: "15px" }}>
         <Button href={eventLink}>Return to Event</Button>
@@ -114,4 +114,4 @@ function AdminPage(props: any) {
   );
 }
 
-export default AdminPage;
+export default EventSettings;
