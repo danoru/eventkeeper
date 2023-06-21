@@ -27,14 +27,15 @@ function AdminItem(props) {
   const submitFormHandler = (e) => {
     e.preventDefault();
 
+    const enteredEventId = router.query.eventId;
     const enteredItem = item;
     const enteredItemType = itemType;
-    const enteredEventId = router.query.eventId;
+    const form = document.querySelector("form");
 
     const reqBody = {
+      eventId: enteredEventId,
       item: enteredItem,
       itemType: enteredItemType,
-      eventId: enteredEventId,
     };
 
     fetch("/api/" + eventId + "/rsvp", {
@@ -46,6 +47,8 @@ function AdminItem(props) {
     })
       .then((response) => response.json())
       .then((data) => console.log(data));
+
+    form.reset();
   };
 
   return (
