@@ -9,14 +9,12 @@ function FeaturedToggle() {
   const router = useRouter();
   const eventId = router.query.eventId;
 
-  // let [adminData, setAdminData] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     fetch("/api/" + eventId, { method: "GET" })
       .then((response) => response.json())
       .then((data) => {
-        // setAdminData(data);
         setIsChecked(data?.[0]?.isFeatured);
       });
   }, []);

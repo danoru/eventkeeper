@@ -8,11 +8,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 function NewItem(props) {
-  const { eventId } = props;
+  const { eventId, updateItems } = props;
   const router = useRouter();
 
-  const [itemType, setItemType] = useState("");
   const [item, setItem] = useState("");
+  const [itemType, setItemType] = useState("");
 
   const dynamicItemType = itemType === "guest-name" ? "Guest" : "Item";
 
@@ -91,15 +91,18 @@ function NewItem(props) {
     }
   };
 
-  function submitFormHandler() {
+  function submitFormHandler(e) {
+    e.preventDefault();
+
+    const enteredEventId = router.query.eventId;
     const enteredItem = item;
     const enteredItemType = itemType;
-    const enteredEventId = router.query.eventId;
+    const form = document.querySelector("form");
 
     const reqBody = {
+      eventId: enteredEventId,
       item: enteredItem,
       itemType: enteredItemType,
-      eventId: enteredEventId,
     };
 
     fetch("/api/" + eventId + "/rsvp", {
@@ -111,6 +114,8 @@ function NewItem(props) {
     })
       .then((response) => response.json())
       .then((data) => console.log(data));
+    updateItems(reqBody);
+    form.reset();
   }
 
   return (

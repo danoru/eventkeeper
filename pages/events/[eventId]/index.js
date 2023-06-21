@@ -1,7 +1,7 @@
-import { Fragment } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import moment from "moment";
+import { Fragment, useState } from "react";
 
 // import AttendanceRegistration from "../components/input/attendance-registration";
 import EventRSVPList from "../../../src/components/lists/event-rsvp-list";
@@ -10,6 +10,12 @@ import NewItem from "../../../src/components/input/new-item";
 
 function EventDetailPage(props) {
   const [event] = props.data;
+  const [items, setItems] = useState([]);
+
+  function updateItems(newItem) {
+    const newItemEntry = { _id: "", itemEntry: newItem };
+    setItems([...items, newItemEntry]);
+  }
 
   const pageTitle = "EventKeeper: " + event.title;
 
@@ -29,7 +35,7 @@ function EventDetailPage(props) {
 
   const checkRSVP = () => {
     if (moment(event.date).isSameOrAfter()) {
-      return <NewItem {...props} />;
+      return <NewItem updateItems={updateItems} />;
     } else if (moment(event.date).isBefore()) {
       return;
     }
@@ -58,7 +64,7 @@ function EventDetailPage(props) {
       <Image src={event.flyer} width="450" height="450" />
       <HostRecommendations />
       {checkRSVP()}
-      <EventRSVPList {...props} />
+      <EventRSVPList items={items} setItems={setItems} {...props} />
     </Fragment>
   );
 }

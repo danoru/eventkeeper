@@ -13,9 +13,10 @@ function EventRSVPList(props: any) {
   const router = useRouter();
   const eventId = router.query.eventId;
   const [event] = props.data;
+  const items = props.items;
+  const setItems = props.setItems;
 
   const [showItems, setShowItems] = useState(true);
-  const [items, setItems] = useState([]);
   const rsvp = event.isGuestOnly;
 
   const checkGuestOnly = () => {
