@@ -1,13 +1,17 @@
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import Paper from "@mui/material/Paper";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
+
+import CreateEvent from "../src/components/admin/create-event";
 
 function AdminSettings() {
   const [errorStatus, setErrorStatus] = useState(false);
@@ -89,11 +93,14 @@ function AdminSettings() {
 
   return (
     <div>
-      <div>
-        <Button>Create New Event</Button>
-      </div>
+      <Divider>
+        <h2>Event Options</h2>
+      </Divider>
+      <Paper sx={{ maxWidth: "50%", margin: "0 auto" }}>
+        <CreateEvent />
+      </Paper>
       <div style={{ marginTop: "15px" }}>
-        <Button href="/">Return to Event</Button>
+        <Button href="/">Return to Main</Button>
       </div>
     </div>
   );
