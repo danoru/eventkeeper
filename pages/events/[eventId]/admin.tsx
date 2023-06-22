@@ -1,6 +1,7 @@
 import Backdrop from "@mui/material/Backdrop";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
+import Divider from "@mui/material/Divider";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -109,11 +110,15 @@ function EventSettings() {
         <CircularProgress color="inherit" />
       </Backdrop>
       <div>
-        <h2>Host Recommendations</h2>
+        <Divider>
+          <h2>Host Recommendations</h2>
+        </Divider>
         <AdminItem />
       </div>
       <div>
-        <h2>Event Options</h2>
+        <Divider>
+          <h2>Event Options</h2>
+        </Divider>
         <FeaturedToggle />
         <GuestOnlyToggle setLoadingStatus={setLoadingStatus} />
       </div>
