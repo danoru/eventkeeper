@@ -1,10 +1,12 @@
+import CssBaseline from "@mui/material/CssBaseline";
+import Head from "next/head";
+import PropTypes from "prop-types";
 import * as React from "react";
 
 import { CacheProvider } from "@emotion/react";
-import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import Head from "next/head";
-import PropTypes from "prop-types";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 import Layout from "../src/components/layout/layout";
 import createEmotionCache from "../src/createEmotionCache";
@@ -19,22 +21,24 @@ export default function MyApp(props) {
 
   return (
     <CacheProvider value={emotionCache}>
-      <Layout>
-        <Head>
-          <title>EventKeeper</title>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-          <link rel="shortcut icon" href="/favicon.ico" />
-        </Head>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </Layout>
+      <LocalizationProvider dateAdapter={AdapterMoment}>
+        <Layout>
+          <Head>
+            <title>EventKeeper</title>
+            <meta charSet="utf-8" />
+            <meta
+              name="viewport"
+              content="initial-scale=1.0, width=device-width"
+            />
+            <link rel="shortcut icon" href="/favicon.ico" />
+          </Head>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </Layout>
+      </LocalizationProvider>
     </CacheProvider>
   );
 }
