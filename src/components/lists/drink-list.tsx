@@ -1,3 +1,5 @@
+import Grid from "@mui/material/Grid";
+
 import { useRouter } from "next/router";
 
 function DrinkList(props: any) {
@@ -7,7 +9,7 @@ function DrinkList(props: any) {
   const eventId = router.query.eventId;
 
   return (
-    <div>
+    <Grid item xs={6} sm={4} md={2}>
       <h3>Drinks</h3>
       <div>
         <ul>
@@ -24,7 +26,7 @@ function DrinkList(props: any) {
             ))}
         </ul>
       </div>
-    </div>
+    </Grid>
   );
 }
 

@@ -1,3 +1,5 @@
+import Grid from "@mui/material/Grid";
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -22,20 +24,20 @@ function EventRSVPList(props: any) {
   const checkGuestOnly = () => {
     if (rsvp) {
       return (
-        <div className={classes.listContainer}>
+        <Grid container spacing={2}>
           {showItems && <GuestList items={items} />}
-        </div>
+        </Grid>
       );
     } else {
       return (
-        <div className={classes.listContainer}>
+        <Grid container spacing={2}>
           {showItems && <GuestList items={items} />}
           {showItems && <MainDishList items={items} />}
           {showItems && <SideDishList items={items} />}
           {showItems && <SnackList items={items} />}
           {showItems && <DessertList items={items} />}
           {showItems && <DrinkList items={items} />}
-        </div>
+        </Grid>
       );
     }
   };

@@ -1,3 +1,5 @@
+import Grid from "@mui/material/Grid";
+
 import { useRouter } from "next/router";
 
 function GuestList(props: any) {
@@ -21,12 +23,12 @@ function GuestList(props: any) {
   let guestCount = rsvpList.length;
 
   return (
-    <div>
+    <Grid item xs={6} sm={4} md={2}>
       <h3>Guest List ({guestCount})</h3>
       <div>
         <ul>{rsvpList}</ul>
       </div>
-    </div>
+    </Grid>
   );
 }
 

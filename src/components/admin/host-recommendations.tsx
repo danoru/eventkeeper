@@ -1,3 +1,5 @@
+import Stack from "@mui/material/Stack";
+
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -31,27 +33,25 @@ function HostRecommendations() {
       return (
         <div>
           <h3>Host Recommendations</h3>
-          <div>
-            <ul
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                margin: "0.5% 30%",
-              }}
-            >
-              {items
-                ?.filter(
-                  (item: any) =>
-                    item.itemEntry.itemType === "recommendation" &&
-                    item.itemEntry.eventId === eventId
-                )
-                .map((item: any) => (
-                  <li style={{}} key={item._id}>
-                    <p>{item.itemEntry.item}</p>
-                  </li>
-                ))}
-            </ul>
-          </div>
+          <Stack
+            alignItems="center"
+            direction="row"
+            flexWrap="wrap"
+            justifyContent="center"
+            spacing={4}
+          >
+            {items
+              ?.filter(
+                (item: any) =>
+                  item.itemEntry.itemType === "recommendation" &&
+                  item.itemEntry.eventId === eventId
+              )
+              .map((item: any) => (
+                <div key={item._id}>
+                  <p>{item.itemEntry.item}</p>
+                </div>
+              ))}
+          </Stack>
         </div>
       );
     }
