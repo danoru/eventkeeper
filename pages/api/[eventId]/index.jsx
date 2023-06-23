@@ -7,6 +7,8 @@ import {
 async function handler(req, res) {
   let client;
 
+  let eventId = req.query.eventId;
+
   const id = req.body.id;
   const title = req.body.title;
   const description = req.body.description;
@@ -41,7 +43,7 @@ async function handler(req, res) {
       const documents = await getFilteredDocuments(
         client,
         "events",
-        { id: id },
+        { id: eventId },
         { _id: -1 }
       );
       res.status(200).json(documents);
