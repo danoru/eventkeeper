@@ -9,7 +9,6 @@ import GuestList from "./guest-list";
 import MainDishList from "./main-dish-list";
 import SideDishList from "./side-dish-list";
 import SnackList from "./snack-list";
-import classes from "./event-rsvp-list.module.css";
 
 function EventRSVPList(props: any) {
   const router = useRouter();
@@ -24,7 +23,7 @@ function EventRSVPList(props: any) {
   const checkGuestOnly = () => {
     if (rsvp) {
       return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} justifyContent="center">
           {showItems && <GuestList items={items} />}
         </Grid>
       );
