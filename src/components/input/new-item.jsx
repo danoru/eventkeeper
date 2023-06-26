@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 function NewItem(props) {
-  const { eventId, updateItems } = props;
+  const { eventId, updateItems, data } = props;
   const router = useRouter();
 
   const [item, setItem] = useState("");
@@ -24,7 +24,7 @@ function NewItem(props) {
     setItem(e.target.value);
   };
 
-  const rsvp = props.isGuestOnly;
+  const rsvp = data[0].isGuestOnly;
 
   const checkGuestOnly = () => {
     if (rsvp) {
