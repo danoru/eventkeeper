@@ -35,7 +35,7 @@ function EventDetailPage(props) {
 
   const checkRSVP = () => {
     if (moment(event.date).isSameOrAfter()) {
-      return <NewItem updateItems={updateItems} />;
+      return <NewItem updateItems={updateItems} {...props} />;
     } else if (moment(event.date).isBefore()) {
       return;
     }
