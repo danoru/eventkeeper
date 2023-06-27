@@ -85,7 +85,7 @@ function NewItem(props) {
             <MenuItem value="drink" id="drink">
               Drink
             </MenuItem>
-            <MenuItem value="drink" id="drink">
+            <MenuItem value="other" id="other">
               Other
             </MenuItem>
           </Select>
