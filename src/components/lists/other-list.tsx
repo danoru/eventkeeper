@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 
 import { useRouter } from "next/router";
 
-function DrinkList(props: any) {
+function OtherList(props: any) {
   const { items } = props;
   const router = useRouter();
 
@@ -10,13 +10,13 @@ function DrinkList(props: any) {
 
   return (
     <Grid item xs={6} sm={4} md={1}>
-      <h3>Drinks</h3>
+      <h3>Other</h3>
       <div>
         <ul>
           {items
             ?.filter(
               (item: any) =>
-                item.itemEntry.itemType === "drink" &&
+                item.itemEntry.itemType === "other" &&
                 item.itemEntry.eventId === eventId
             )
             .map((item: any) => (
@@ -30,4 +30,4 @@ function DrinkList(props: any) {
   );
 }
 
-export default DrinkList;
+export default OtherList;

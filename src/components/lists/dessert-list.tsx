@@ -10,7 +10,7 @@ function DessertList(props: any) {
   const eventId = router.query.eventId;
 
   return (
-    <Grid item xs={6} sm={4} md={2}>
+    <Grid item xs={6} sm={4} md={1}>
       <h3>Desserts</h3>
       <div>
         <ul>

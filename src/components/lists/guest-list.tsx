@@ -23,7 +23,7 @@ function GuestList(props: any) {
   let guestCount = rsvpList.length;
 
   return (
-    <Grid item xs={6} sm={4} md={2}>
+    <Grid item xs={6} sm={4} md={1}>
       <h3>Guest List ({guestCount})</h3>
       <div>
         <ul>{rsvpList}</ul>

@@ -85,6 +85,9 @@ function NewItem(props) {
             <MenuItem value="drink" id="drink">
               Drink
             </MenuItem>
+            <MenuItem value="drink" id="drink">
+              Other
+            </MenuItem>
           </Select>
         </FormControl>
       );

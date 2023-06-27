@@ -9,6 +9,7 @@ import GuestList from "./guest-list";
 import MainDishList from "./main-dish-list";
 import SideDishList from "./side-dish-list";
 import SnackList from "./snack-list";
+import OtherList from "./other-list";
 
 function EventRSVPList(props: any) {
   const router = useRouter();
@@ -29,13 +30,14 @@ function EventRSVPList(props: any) {
       );
     } else {
       return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} justifyContent="space-around">
           {showItems && <GuestList items={items} />}
           {showItems && <MainDishList items={items} />}
           {showItems && <SideDishList items={items} />}
           {showItems && <SnackList items={items} />}
           {showItems && <DessertList items={items} />}
           {showItems && <DrinkList items={items} />}
+          {showItems && <OtherList items={items} />}
         </Grid>
       );
     }
