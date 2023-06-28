@@ -90,6 +90,9 @@ function AdminItem(props) {
             <MenuItem value="drink" id="drink">
               Drink
             </MenuItem>
+            <MenuItem value="supplies" id="supplies">
+              Supplies
+            </MenuItem>
           </Select>
         </FormControl>
         <FormControl

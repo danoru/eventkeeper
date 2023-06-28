@@ -9,7 +9,7 @@ import GuestList from "./guest-list";
 import MainDishList from "./main-dish-list";
 import SideDishList from "./side-dish-list";
 import SnackList from "./snack-list";
-import OtherList from "./other-list";
+import SuppliesList from "./supplies-list";
 
 function EventRSVPList(props: any) {
   const router = useRouter();
@@ -37,7 +37,7 @@ function EventRSVPList(props: any) {
           {showItems && <SnackList items={items} />}
           {showItems && <DessertList items={items} />}
           {showItems && <DrinkList items={items} />}
-          {showItems && <OtherList items={items} />}
+          {showItems && <SuppliesList items={items} />}
         </Grid>
       );
     }
