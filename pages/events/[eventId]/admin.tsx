@@ -36,11 +36,11 @@ function EventSettings() {
     e.preventDefault();
   };
 
-  const passwordHandler = (e: any) => {
+  const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  function submitFormHandler(e: any) {
+  function submitFormHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (password === "sparks23") {
       setLoggedIn(true);
