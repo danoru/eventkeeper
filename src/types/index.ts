@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 export interface EVENT_DATA_TYPE {
-  _id: string;
+  _id: ObjectId;
   id: string;
   title: string;
   description: string;
@@ -12,7 +14,7 @@ export interface EVENT_DATA_TYPE {
 }
 
 export interface ITEM_ENTRY_TYPE {
-  _id: string;
+  _id: ObjectId;
   itemEntry: object;
   itemType: string;
   item: string;
