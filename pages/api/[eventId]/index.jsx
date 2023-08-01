@@ -38,6 +38,30 @@ async function handler(req, res) {
     return;
   }
 
+  if (req.method === "POST") {
+    if (
+      id.trim() === "" ||
+      title.trim() === "" ||
+      description.trim() === "" ||
+      location.trim() === "" ||
+      date.trim() === "" ||
+      image.trim() === "" ||
+      flyer.trim() === ""
+    ) {
+      res.status(422).json({ message: "Invalid input" });
+      return;
+    }
+    try {
+      await insertDocument(client, "events", newEvent);
+      client.close();
+    } catch (error) {
+      res.status(500).json({ message: "POST request failed." + error });
+      return;
+    }
+    res.status(201).json({ message: "Event added successfully." });
+    return;
+  }
+
   if (req.method === "GET") {
     try {
       const documents = await getFilteredDocuments(
@@ -50,30 +74,6 @@ async function handler(req, res) {
     } catch (error) {
       res.status(500).json({ message: "GET request failed." + error });
     }
-  } else if (req.method === "POST") {
-    if (
-      id.trim() === "" ||
-      title.trim() === "" ||
-      description.trim() === "" ||
-      location.trim() === "" ||
-      date.trim() === "" ||
-      image.trim() === "" ||
-      flyer.trim() === "" ||
-      isFeatured.trim() === "" ||
-      isGuestOnly.trim() === ""
-    ) {
-      res.status(422).json({ message: "Invalid input" });
-      return;
-    }
-    try {
-      await insertDocument(client, "events", { newEvent });
-      client.close();
-    } catch (error) {
-      res.status(500).json({ message: "POST request failed." + error });
-    }
-  } else {
-    res.status(500).json({ message: "Invalid request." });
-    return;
   }
 
   client.close();

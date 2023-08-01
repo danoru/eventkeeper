@@ -18,16 +18,41 @@ function CreateEvent() {
   const [isFeatured, setIsFeatured] = useState(false);
   const [isGuestOnly, setIsGuestOnly] = useState(false);
 
-  const selectionHandler = (e) => {
-    setItemType(e.target.value);
+  const idHandler = (e) => {
+    setId(e.target.value);
+  };
+  const titleHandler = (e) => {
+    setTitle(e.target.value);
   };
 
-  const itemHandler = (e) => {
-    setItem(e.target.value);
+  const descriptionHandler = (e) => {
+    setDescription(e.target.value);
+  };
+  const locationHandler = (e) => {
+    setLocation(e.target.value);
+  };
+  const dateHandler = (e) => {
+    setDate(e.target.value);
+  };
+
+  const flyerHandler = (e) => {
+    setFlyer(e.target.value);
+  };
+
+  const featuredHandler = (e) => {
+    const toggleValue = e.target.checked;
+    setIsFeatured(toggleValue);
+  };
+
+  const guestOnlyHandler = (e) => {
+    const toggleValue = e.target.checked;
+    setIsGuestOnly(toggleValue);
   };
 
   const submitFormHandler = (e) => {
     e.preventDefault();
+
+    const form = document.querySelector("form");
 
     const reqBody = {
       id: id,
@@ -41,15 +66,17 @@ function CreateEvent() {
       isGuestOnly: isGuestOnly,
     };
 
-    // fetch("/api/" + id + "/rsvp", {
-    //   method: "POST",
-    //   body: JSON.stringify(reqBody),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data));
+    fetch("/api/" + id, {
+      method: "POST",
+      body: JSON.stringify(reqBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+
+    form.reset();
   };
 
   return (
@@ -63,8 +90,9 @@ function CreateEvent() {
         <InputLabel id="input-label">Event ID</InputLabel>
         <OutlinedInput
           id="outlined-adornment"
-          onChange={itemHandler}
+          onChange={idHandler}
           label="Event ID"
+          value={id}
         />
       </FormControl>
       <FormControl
@@ -76,8 +104,9 @@ function CreateEvent() {
         <InputLabel id="input-label">Title</InputLabel>
         <OutlinedInput
           id="outlined-adornment"
-          onChange={itemHandler}
+          onChange={titleHandler}
           label="Title"
+          value={title}
         />
       </FormControl>
       <FormControl
@@ -89,8 +118,9 @@ function CreateEvent() {
         <InputLabel id="input-label">Description</InputLabel>
         <OutlinedInput
           id="outlined-adornment"
-          onChange={itemHandler}
+          onChange={descriptionHandler}
           label="Description"
+          value={description}
         />
       </FormControl>
       <FormControl
@@ -102,8 +132,9 @@ function CreateEvent() {
         <InputLabel id="input-label">Location</InputLabel>
         <OutlinedInput
           id="outlined-adornment"
+          onChange={locationHandler}
           label="Location"
-          onChange={itemHandler}
+          value={location}
         />
       </FormControl>
       <FormControl
@@ -112,7 +143,13 @@ function CreateEvent() {
           width: "25ch",
         }}
       >
-        DatePicker
+        <InputLabel id="input-label">Date</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment"
+          onChange={dateHandler}
+          label="Date"
+          value={date}
+        />
       </FormControl>
       <FormControl
         sx={{
@@ -123,8 +160,9 @@ function CreateEvent() {
         <InputLabel id="input-label">Flyer</InputLabel>
         <OutlinedInput
           id="outlined-adornment"
-          onChange={itemHandler}
+          onChange={flyerHandler}
           label="Flyer"
+          value={flyer}
         />
       </FormControl>
       <FormControl
@@ -136,7 +174,7 @@ function CreateEvent() {
         <FormControlLabel
           label="Featured Event"
           labelPlacement="start"
-          control={<Switch />}
+          control={<Switch onChange={featuredHandler} />}
         />
       </FormControl>
       <FormControl
@@ -148,16 +186,11 @@ function CreateEvent() {
         <FormControlLabel
           label="Guest Only"
           labelPlacement="start"
-          control={<Switch />}
+          control={<Switch onChange={guestOnlyHandler} />}
         />
       </FormControl>
       <br />
-      <Button
-        disabled
-        variant="contained"
-        type="submit"
-        sx={{ margin: "10px" }}
-      >
+      <Button variant="contained" type="submit" sx={{ margin: "10px" }}>
         Create New Event
       </Button>
     </form>
