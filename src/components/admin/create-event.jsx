@@ -92,7 +92,6 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={idHandler}
           label="Event ID"
-          value={id}
         />
       </FormControl>
       <FormControl
@@ -106,7 +105,6 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={titleHandler}
           label="Title"
-          value={title}
         />
       </FormControl>
       <FormControl
@@ -120,7 +118,6 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={descriptionHandler}
           label="Description"
-          value={description}
         />
       </FormControl>
       <FormControl
@@ -134,7 +131,6 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={locationHandler}
           label="Location"
-          value={location}
         />
       </FormControl>
       <FormControl
@@ -148,7 +144,6 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={dateHandler}
           label="Date"
-          value={date}
         />
       </FormControl>
       <FormControl
@@ -162,7 +157,6 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={flyerHandler}
           label="Flyer"
-          value={flyer}
         />
       </FormControl>
       <FormControl
