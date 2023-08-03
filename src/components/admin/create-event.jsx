@@ -4,8 +4,8 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import DatePicker from "@mui/x-date-pickers/DatePicker";
 
+import { DateTimePicker } from "@mui/x-date-pickers";
 import { useState } from "react";
 
 function CreateEvent() {
@@ -30,9 +30,6 @@ function CreateEvent() {
   };
   const locationHandler = (e) => {
     setLocation(e.target.value);
-  };
-  const dateHandler = (e) => {
-    setDate(e.target.value);
   };
 
   const flyerHandler = (e) => {
@@ -92,6 +89,7 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={idHandler}
           label="Event ID"
+          required
         />
       </FormControl>
       <FormControl
@@ -105,6 +103,7 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={titleHandler}
           label="Title"
+          required
         />
       </FormControl>
       <FormControl
@@ -118,6 +117,7 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={descriptionHandler}
           label="Description"
+          required
         />
       </FormControl>
       <FormControl
@@ -131,6 +131,7 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={locationHandler}
           label="Location"
+          required
         />
       </FormControl>
       <FormControl
@@ -139,11 +140,15 @@ function CreateEvent() {
           width: "25ch",
         }}
       >
-        <InputLabel id="input-label">Date</InputLabel>
-        <OutlinedInput
-          id="outlined-adornment"
-          onChange={dateHandler}
+        <DateTimePicker
+          disablePast
           label="Date"
+          onChange={(newDate) => setDate(newDate)}
+          slotProps={{
+            textField: {
+              readOnly: true,
+            },
+          }}
         />
       </FormControl>
       <FormControl
@@ -157,6 +162,7 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={flyerHandler}
           label="Flyer"
+          required
         />
       </FormControl>
       <FormControl
