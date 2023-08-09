@@ -7,17 +7,20 @@ import { CacheProvider } from "@emotion/react";
 import { ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import type { AppProps } from "next/app";
 
-import Layout from "../src/components/layout/layout";
 import createEmotionCache from "../src/createEmotionCache";
+import Layout from "../src/components/layout/layout";
 import theme from "../src/styles/theme";
+
 import "../src/styles/global.css";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-export default function MyApp(props) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+export default function MyApp(props: AppProps) {
+  const { Component, pageProps } = props;
+  const emotionCache = clientSideEmotionCache;
 
   return (
     <CacheProvider value={emotionCache}>
