@@ -12,6 +12,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 
 import CreateEvent from "../src/components/admin/create-event";
+import useDeviceSize from "../src/hooks/useDeviceSize";
 
 function AdminSettings() {
   const [errorStatus, setErrorStatus] = useState(false);
@@ -20,6 +21,9 @@ function AdminSettings() {
   const [showPassword, setShowPassword] = useState(false);
 
   const passwordError = errorStatus ? "Incorrect password." : "";
+
+  const { width } = useDeviceSize();
+  const isMobile = width <= 500;
 
   const clickShowPasswordHandler = () => setShowPassword((show) => !show);
 
@@ -96,7 +100,7 @@ function AdminSettings() {
       <Divider>
         <h2>Event Options</h2>
       </Divider>
-      <Paper sx={{ maxWidth: "50%", margin: "0 auto" }}>
+      <Paper sx={{ maxWidth: isMobile ? "75%" : "50%", margin: "0 auto" }}>
         <CreateEvent />
       </Paper>
       <div style={{ marginTop: "15px" }}>
