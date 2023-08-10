@@ -4,9 +4,19 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import moment from "moment";
 
 import { DateTimePicker } from "@mui/x-date-pickers";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+async function fetchEventIds(userYear) {
+  const response = await fetch(`/api/events/`);
+  const data = await response.json();
+  const eventIds = data
+    .map((item) => item.id)
+    .filter((id) => id.startsWith(userYear));
+  return eventIds;
+}
 
 function CreateEvent() {
   const [id, setId] = useState("");
@@ -17,6 +27,25 @@ function CreateEvent() {
   const [flyer, setFlyer] = useState("");
   const [isFeatured, setIsFeatured] = useState(false);
   const [isGuestOnly, setIsGuestOnly] = useState(false);
+  const [userEventIds, setUserEventIds] = useState([]);
+
+  const user = "sparks";
+  const currentYear = moment().format("YY");
+  const userYear = user + currentYear;
+
+  useEffect(() => {
+    fetchEventIds(userYear)
+      .then((eventIds) => {
+        setUserEventIds(eventIds);
+      })
+      .catch((error) => {
+        console.error("Error fetching event IDs:", error);
+      });
+  }, []);
+
+  let incrementalNumber = userEventIds.length + 1;
+  const number = incrementalNumber.toString().padStart(2, "0");
+  const newEventId = userYear + number;
 
   const idHandler = (e) => {
     setId(e.target.value);
@@ -89,7 +118,8 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={idHandler}
           label="Event ID"
-          required
+          value={newEventId}
+          disabled
         />
       </FormControl>
       <FormControl
