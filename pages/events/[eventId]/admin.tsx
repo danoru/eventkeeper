@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 import AdminItem from "../../../src/components/admin/admin-item";
+import EditEvent from "../../../src/components/admin/edit-event";
 import FeaturedToggle from "../../../src/components/admin/featured-toggle";
 import GuestOnlyToggle from "../../../src/components/admin/guest-only-toggle";
 
@@ -119,6 +120,8 @@ function EventSettings() {
         <Divider>
           <h2>Event Options</h2>
         </Divider>
+        <EditEvent />
+        <h3>Event Toggles</h3>
         <FeaturedToggle />
         <GuestOnlyToggle setLoadingStatus={setLoadingStatus} />
       </div>

@@ -10,7 +10,7 @@ import { DateTimePicker } from "@mui/x-date-pickers";
 import { useState, useEffect } from "react";
 
 async function fetchEventIds(userYear) {
-  const response = await fetch(`/api/events/`);
+  const response = await fetch("/api/events/");
   const data = await response.json();
   const eventIds = data
     .map((item) => item.id)
