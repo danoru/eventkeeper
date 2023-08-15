@@ -53,23 +53,23 @@ function EditEvent() {
   //     .then((data) => console.log(data));
   // };
 
-  const idHandler = (e) => {
-    setId(e.target.value);
-  };
-  const titleHandler = (e) => {
-    setTitle(e.target.value);
-  };
+  // const idHandler = (e) => {
+  //   setId(e.target.value);
+  // };
+  // const titleHandler = (e) => {
+  //   setTitle(e.target.value);
+  // };
 
-  const descriptionHandler = (e) => {
-    setDescription(e.target.value);
-  };
-  const locationHandler = (e) => {
-    setLocation(e.target.value);
-  };
+  // const descriptionHandler = (e) => {
+  //   setDescription(e.target.value);
+  // };
+  // const locationHandler = (e) => {
+  //   setLocation(e.target.value);
+  // };
 
-  const flyerHandler = (e) => {
-    setFlyer(e.target.value);
-  };
+  // const flyerHandler = (e) => {
+  //   setFlyer(e.target.value);
+  // };
 
   // const featuredHandler = (e) => {
   //   const toggleValue = e.target.checked;
@@ -121,11 +121,14 @@ function EditEvent() {
             width: "25ch",
           }}
         >
-          <InputLabel id="input-label">Event ID</InputLabel>
+          <InputLabel id="input-label" shrink>
+            Event ID
+          </InputLabel>
           <OutlinedInput
             id="outlined-adornment"
             label="Event ID"
             value={eventData.id}
+            notched
             disabled
           />
         </FormControl>
@@ -135,11 +138,14 @@ function EditEvent() {
             width: "25ch",
           }}
         >
-          <InputLabel id="input-label">Title</InputLabel>
+          <InputLabel id="input-label" shrink>
+            Title
+          </InputLabel>
           <OutlinedInput
             id="outlined-adornment"
             label="Title"
             value={eventData.title}
+            notched
             disabled
           />
         </FormControl>
@@ -149,11 +155,14 @@ function EditEvent() {
             width: "25ch",
           }}
         >
-          <InputLabel id="input-label">Description</InputLabel>
+          <InputLabel id="input-label" shrink>
+            Description
+          </InputLabel>
           <OutlinedInput
             id="outlined-adornment"
             label="Description"
             value={eventData.description}
+            notched
             disabled
           />
         </FormControl>
@@ -163,11 +172,14 @@ function EditEvent() {
             width: "25ch",
           }}
         >
-          <InputLabel id="input-label">Location</InputLabel>
+          <InputLabel id="input-label" shrink>
+            Location
+          </InputLabel>
           <OutlinedInput
             id="outlined-adornment"
             label="Location"
             value={eventData.location}
+            notched
             disabled
           />
         </FormControl>
@@ -177,10 +189,14 @@ function EditEvent() {
             width: "25ch",
           }}
         >
+          <InputLabel id="input-label" shrink>
+            Date
+          </InputLabel>
           <OutlinedInput
             id="outlined-adornment"
             label="Date"
             value={eventData.date}
+            notched
             disabled
           />
         </FormControl>
@@ -190,11 +206,14 @@ function EditEvent() {
             width: "25ch",
           }}
         >
-          <InputLabel id="input-label">Flyer</InputLabel>
+          <InputLabel id="input-label" shrink>
+            Flyer
+          </InputLabel>
           <OutlinedInput
             id="outlined-adornment"
             label="Flyer"
             value={eventData.flyer}
+            notched
             disabled
           />
         </FormControl>
@@ -207,6 +226,7 @@ function EditEvent() {
         <FormControlLabel
           label="Featured Event"
           labelPlacement="start"
+          notched
                     disabled
         />
       </FormControl>
@@ -219,6 +239,7 @@ function EditEvent() {
         <FormControlLabel
           label="Guest Only"
           labelPlacement="start"
+          notched
                     disabled
         />
       </FormControl> */}
