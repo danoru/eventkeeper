@@ -24,9 +24,46 @@ function EditEvent() {
   const [date, setDate] = useState("");
   const [flyer, setFlyer] = useState("");
   const [eventData, setEventData] = useState([]);
+  const [eventDetailType, setEventDetailType] = useState("");
+  const [eventDetailItem, setEventDetailItem] = useState("");
 
   const router = useRouter();
   const eventId = router.query.eventId;
+
+  const selectionHandler = (e) => {
+    setEventDetailType(e.target.value);
+  };
+
+  const dynamicEventElement =
+    eventDetailType === "date" ? (
+      <FormControl
+        sx={{
+          m: 1,
+          width: "25ch",
+        }}
+      >
+        <DateTimePicker
+          disablePast
+          label="Date"
+          onChange={(newDate) => setDate(newDate)}
+          slotProps={{
+            textField: {
+              readOnly: true,
+            },
+          }}
+        />
+      </FormControl>
+    ) : (
+      <FormControl
+        sx={{
+          m: 1,
+          width: "25ch",
+        }}
+      >
+        <InputLabel id="input-label">Value</InputLabel>
+        <OutlinedInput id="outlined-adornment" label="value" />
+      </FormControl>
+    );
 
   useEffect(() => {
     fetchEvent(eventId)
@@ -184,7 +221,13 @@ function EditEvent() {
           variant="outlined"
         >
           <InputLabel id="select-label">Key</InputLabel>
-          <Select htmlFor="item-type" id="item-type" label="Type">
+          <Select
+            htmlFor="item-type"
+            id="item-type"
+            label="Type"
+            onChange={selectionHandler}
+            value={eventDetailType}
+          >
             <MenuItem value="title" id="title">
               Title
             </MenuItem>
@@ -202,15 +245,7 @@ function EditEvent() {
             </MenuItem>
           </Select>
         </FormControl>
-        <FormControl
-          sx={{
-            m: 1,
-            width: "25ch",
-          }}
-        >
-          <InputLabel id="input-label">Value</InputLabel>
-          <OutlinedInput id="outlined-adornment" label="value" />
-        </FormControl>
+        {dynamicEventElement}
         <Button
           sx={{
             m: 1,
