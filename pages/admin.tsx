@@ -15,14 +15,13 @@ import CreateEvent from "../src/components/admin/create-event";
 import useDeviceSize from "../src/hooks/useDeviceSize";
 
 function AdminSettings() {
-  const environment = process.env.NEXT_PUBLIC_ENV;
-
   const [errorStatus, setErrorStatus] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const passwordError = errorStatus ? "Incorrect password." : "";
+  const environment = process.env.NODE_ENV;
 
   const { width } = useDeviceSize();
   const isMobile = width <= 500;
