@@ -2,6 +2,7 @@ import {
   connectDatabase,
   getFilteredDocuments,
   insertDocument,
+  updateDocument,
 } from "../../../src/helpers/db-util";
 
 async function handler(req, res) {
@@ -48,7 +49,7 @@ async function handler(req, res) {
       image.trim() === "" ||
       flyer.trim() === ""
     ) {
-      res.status(422).json({ message: "Invalid input" });
+      res.status(422).json({ message: "Invalid input." });
       return;
     }
     try {
@@ -59,6 +60,34 @@ async function handler(req, res) {
       return;
     }
     res.status(201).json({ message: "Event added successfully." });
+    return;
+  }
+
+  if (req.method === "PUT") {
+    const { updateEventId, updateEventKey, updateEventValue } = req.body;
+    console.log(req.body);
+
+    if (
+      updateEventId.trim() === "" ||
+      updateEventKey.trim() === "" ||
+      updateEventValue.trim() === ""
+    ) {
+      res.status(422).json({ message: "Invalid input." });
+      return;
+    }
+    try {
+      await updateDocument(
+        client,
+        "events",
+        { id: updateEventId },
+        { $set: { [updateEventKey]: updateEventValue } }
+      );
+      client.close();
+    } catch (error) {
+      res.status(500).json({ message: "PUT request failed." + error });
+      return;
+    }
+    res.status(201).json({ message: "Event updated successfully." });
     return;
   }
 

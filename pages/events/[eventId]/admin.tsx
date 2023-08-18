@@ -20,6 +20,7 @@ import GuestOnlyToggle from "../../../src/components/admin/guest-only-toggle";
 
 function EventSettings() {
   const router = useRouter();
+  const environment = process.env.NEXT_PUBLIC_ENV;
   const eventId = router.query.eventId;
   const eventLink = "/events/" + eventId;
 

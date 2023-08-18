@@ -17,12 +17,6 @@ async function fetchEvent(eventId) {
 }
 
 function EditEvent() {
-  const [id, setId] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [date, setDate] = useState("");
-  const [flyer, setFlyer] = useState("");
   const [eventData, setEventData] = useState([]);
   const [eventDetailType, setEventDetailType] = useState("");
   const [eventDetailItem, setEventDetailItem] = useState("");
@@ -30,8 +24,18 @@ function EditEvent() {
   const router = useRouter();
   const eventId = router.query.eventId;
 
-  const selectionHandler = (e) => {
+  const keyHandler = (e) => {
     setEventDetailType(e.target.value);
+  };
+
+  const valueHandler = (e) => {
+    if (eventDetailType === "date") {
+      {
+        (newDate) => setEventDetailitem(newDate);
+      }
+    } else {
+      setEventDetailItem(e.target.value);
+    }
   };
 
   const dynamicEventElement =
@@ -45,7 +49,7 @@ function EditEvent() {
         <DateTimePicker
           disablePast
           label="Date"
-          onChange={(newDate) => setDate(newDate)}
+          onChange={valueHandler}
           slotProps={{
             textField: {
               readOnly: true,
@@ -61,7 +65,11 @@ function EditEvent() {
         }}
       >
         <InputLabel id="input-label">Value</InputLabel>
-        <OutlinedInput id="outlined-adornment" label="value" />
+        <OutlinedInput
+          id="outlined-adornment"
+          label={eventDetailItem}
+          onChange={valueHandler}
+        />
       </FormControl>
     );
 
@@ -81,16 +89,12 @@ function EditEvent() {
     const form = document.querySelector("form");
 
     const reqBody = {
-      id: id,
-      title: title,
-      description: description,
-      location: location,
-      date: date,
-      image: flyer,
-      flyer: flyer,
+      updateEventId: eventId,
+      updateEventKey: eventDetailType,
+      updateEventValue: eventDetailItem,
     };
 
-    fetch("/api/" + id, {
+    fetch("/api/" + eventId, {
       method: "PUT",
       body: JSON.stringify(reqBody),
       headers: {
@@ -225,7 +229,7 @@ function EditEvent() {
             htmlFor="item-type"
             id="item-type"
             label="Type"
-            onChange={selectionHandler}
+            onChange={keyHandler}
             value={eventDetailType}
           >
             <MenuItem value="title" id="title">
@@ -254,7 +258,6 @@ function EditEvent() {
           }}
           variant="contained"
           type="submit"
-          disabled
         >
           Submit Changes
         </Button>
