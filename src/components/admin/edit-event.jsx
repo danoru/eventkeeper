@@ -37,6 +37,11 @@ function EditEvent(props) {
       {
         (newDate) => setEventDetailitem(newDate);
       }
+    }
+    if (eventDetailType === "isFeatured" || eventDetailType === "isGuestOnly") {
+      {
+        setEventDetailItem(e.target.value === "true" ? true : false);
+      }
     } else {
       setEventDetailItem(e.target.value);
     }

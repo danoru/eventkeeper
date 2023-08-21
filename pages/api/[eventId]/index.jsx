@@ -67,11 +67,7 @@ async function handler(req, res) {
     const { updateEventId, updateEventKey, updateEventValue } = req.body;
     console.log(req.body);
 
-    if (
-      updateEventId.trim() === "" ||
-      updateEventKey.trim() === "" ||
-      updateEventValue.trim() === ""
-    ) {
+    if (updateEventId.trim() === "" || updateEventKey.trim() === "") {
       res.status(422).json({ message: "Invalid input." });
       return;
     }
