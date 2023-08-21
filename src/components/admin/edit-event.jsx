@@ -9,6 +9,9 @@ import { DateTimePicker } from "@mui/x-date-pickers";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
+import FeaturedToggle from "./featured-toggle";
+import GuestOnlyToggle from "./guest-only-toggle";
+
 async function fetchEvent(eventId) {
   const response = await fetch("/api/" + eventId);
   const data = await response.json();
@@ -16,13 +19,14 @@ async function fetchEvent(eventId) {
   return currentEventData;
 }
 
-function EditEvent() {
+function EditEvent(props) {
   const [eventData, setEventData] = useState([]);
   const [eventDetailType, setEventDetailType] = useState("");
   const [eventDetailItem, setEventDetailItem] = useState("");
 
   const router = useRouter();
   const eventId = router.query.eventId;
+  const { setLoadingStatus } = props;
 
   const keyHandler = (e) => {
     setEventDetailType(e.target.value);
@@ -56,6 +60,28 @@ function EditEvent() {
             },
           }}
         />
+      </FormControl>
+    ) : eventDetailType === "featured" || eventDetailType === "guest-only" ? (
+      <FormControl
+        sx={{
+          m: 1,
+          width: "25ch",
+        }}
+      >
+        <InputLabel id="select-label">Value</InputLabel>
+        <Select
+          htmlFor="value"
+          id="value"
+          label={eventDetailType === "featured" ? "featured" : "guest-only"}
+          onChange={valueHandler}
+        >
+          <MenuItem value="true" id="true">
+            True
+          </MenuItem>
+          <MenuItem value="false" id="false">
+            False
+          </MenuItem>
+        </Select>
       </FormControl>
     ) : (
       <FormControl
@@ -213,6 +239,8 @@ function EditEvent() {
             disabled
           />
         </FormControl>
+        <FeaturedToggle />
+        <GuestOnlyToggle setLoadingStatus={setLoadingStatus} />
       </div>
       <br />
       <h3>Edit Event Details</h3>
@@ -246,6 +274,12 @@ function EditEvent() {
             </MenuItem>
             <MenuItem value="flyer" id="flyer">
               Flyer
+            </MenuItem>
+            <MenuItem value="featured" id="featured">
+              Featured
+            </MenuItem>
+            <MenuItem value="guest-only" id="guest-only">
+              Guest Only
             </MenuItem>
           </Select>
         </FormControl>

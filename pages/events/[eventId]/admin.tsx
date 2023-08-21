@@ -20,7 +20,6 @@ import GuestOnlyToggle from "../../../src/components/admin/guest-only-toggle";
 
 function EventSettings() {
   const router = useRouter();
-  const environment = process.env.NEXT_PUBLIC_ENV;
   const eventId = router.query.eventId;
   const eventLink = "/events/" + eventId;
 
@@ -121,10 +120,10 @@ function EventSettings() {
         <Divider>
           <h2>Event Options</h2>
         </Divider>
-        <EditEvent />
-        <h3>Event Toggles</h3>
+        <EditEvent setLoadingStatus={setLoadingStatus} />
+        {/* <h3>Event Toggles</h3>
         <FeaturedToggle />
-        <GuestOnlyToggle setLoadingStatus={setLoadingStatus} />
+        <GuestOnlyToggle setLoadingStatus={setLoadingStatus} /> */}
       </div>
       <div style={{ marginTop: "15px" }}>
         <Button href={eventLink}>Return to Event</Button>
