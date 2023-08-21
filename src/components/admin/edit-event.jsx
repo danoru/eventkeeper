@@ -61,7 +61,8 @@ function EditEvent(props) {
           }}
         />
       </FormControl>
-    ) : eventDetailType === "featured" || eventDetailType === "guest-only" ? (
+    ) : eventDetailType === "isFeatured" ||
+      eventDetailType === "isGuestOnly" ? (
       <FormControl
         sx={{
           m: 1,
@@ -72,7 +73,9 @@ function EditEvent(props) {
         <Select
           htmlFor="value"
           id="value"
-          label={eventDetailType === "featured" ? "featured" : "guest-only"}
+          label={
+            eventDetailType === "isFeatured" ? "isFeatured" : "isGuestOnly"
+          }
           onChange={valueHandler}
         >
           <MenuItem value="true" id="true">
@@ -275,10 +278,10 @@ function EditEvent(props) {
             <MenuItem value="flyer" id="flyer">
               Flyer
             </MenuItem>
-            <MenuItem value="featured" id="featured">
+            <MenuItem value="isFeatured" id="isFeatured">
               Featured
             </MenuItem>
-            <MenuItem value="guest-only" id="guest-only">
+            <MenuItem value="isGuestOnly" id="isGuestOnly">
               Guest Only
             </MenuItem>
           </Select>
