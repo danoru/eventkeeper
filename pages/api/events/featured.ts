@@ -5,18 +5,22 @@ import {
   insertDocument,
 } from "../../../src/helpers/db-util";
 
-async function handler(req, res) {
+import { NextApiRequest, NextApiResponse } from "next";
+
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   let client;
 
   try {
     client = await connectDatabase();
   } catch (error) {
-    res.status(500).json({ message: "Connecting to the database failed." });
+    res
+      .status(500)
+      .json({ code: 500, message: "Connecting to the database failed." });
     return;
   }
 
   if (req.method === "POST") {
-    res.status(500).json({ message: "Inserting data not allowed." });
+    res.status(500).json({ code: 500, message: "Inserting data not allowed." });
     return;
   }
 
@@ -30,7 +34,9 @@ async function handler(req, res) {
       );
       res.status(200).json(documents);
     } catch (error) {
-      res.status(500).json({ message: "GET request failed." + error });
+      res
+        .status(500)
+        .json({ code: 500, message: "GET request failed." + error });
     }
   }
 
