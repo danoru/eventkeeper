@@ -4,7 +4,9 @@ import {
   insertDocument,
 } from "../../../src/helpers/db-util";
 
-async function handler(req, res) {
+import { NextApiRequest, NextApiResponse } from "next";
+
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   let client;
 
   const item = req.body.item;
@@ -20,23 +22,25 @@ async function handler(req, res) {
   try {
     client = await connectDatabase();
   } catch (error) {
-    res.status(500).json({ message: "Connecting to the database failed." });
+    res
+      .status(500)
+      .json({ code: 500, message: "Connecting to the database failed." });
     return;
   }
 
   if (req.method === "POST") {
     if (!itemType || !item || item.trim() === "") {
-      res.status(422).json({ message: "Invalid input" });
+      res.status(422).json({ code: 422, message: "Invalid input" });
       return;
     }
     try {
       await insertDocument(client, "attendance", { itemEntry: newItemEntry });
       client.close();
     } catch (error) {
-      res.status(500).json({ message: "Inserting data failed." });
+      res.status(500).json({ code: 500, message: "Inserting data failed." });
       return;
     }
-    res.status(201).json({ message: "Item added successfully." });
+    res.status(201).json({ code: 201, message: "Item added successfully." });
     return;
   }
 
@@ -50,7 +54,9 @@ async function handler(req, res) {
       );
       res.status(200).json({ attendance: documents });
     } catch (error) {
-      res.status(500).json({ message: "GET request failed." + error });
+      res
+        .status(500)
+        .json({ code: 500, message: "GET request failed." + error });
     }
   }
 
