@@ -1,9 +1,9 @@
 import { MongoClient } from "mongodb";
 
 export async function connectDatabase() {
-  const client = new MongoClient(process.env.MONGODB_URI!);
+  const client = await MongoClient.connect(process.env.MONGODB_URI!);
 
-  return client.connect();
+  return client;
 }
 
 export async function insertDocument(
