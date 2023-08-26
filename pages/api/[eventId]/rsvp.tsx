@@ -1,5 +1,6 @@
+import { MongoClient } from "mongodb";
 import {
-  connectDatabase,
+  // connectDatabase,
   getFilteredDocuments,
   insertDocument,
 } from "../../../src/helpers/db-util";
@@ -7,7 +8,9 @@ import {
 import { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  let client;
+  const client = new MongoClient(process.env.MONGODB_URI!);
+
+  // let client;
 
   const item = req.body.item;
   const itemType = req.body.itemType;
@@ -20,7 +23,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   };
 
   try {
-    client = await connectDatabase();
+    await client.connect();
+    // client = await connectDatabase();
   } catch (error) {
     res
       .status(500)

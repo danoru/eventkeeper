@@ -1,16 +1,23 @@
-import { connectDatabase, updateDocument } from "../../../src/helpers/db-util";
+import { MongoClient } from "mongodb";
+
+import {
+  // connectDatabase,
+  updateDocument,
+} from "../../../src/helpers/db-util";
 
 import { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  let client;
+  const client = new MongoClient(process.env.MONGODB_URI!);
+  // let client;
 
   const id = req.body.id;
   const isGuestOnly = req.body.isGuestOnly;
   const isFeatured = req.body.isFeatured;
 
   try {
-    client = await connectDatabase();
+    await client.connect();
+    // client = await connectDatabase();
   } catch (error) {
     res
       .status(500)

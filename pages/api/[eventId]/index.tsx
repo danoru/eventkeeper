@@ -10,10 +10,12 @@ import {
 import { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  let client;
+  // let client;
+  const client = new MongoClient(process.env.MONGODB_URI!);
 
   try {
-    client = await connectDatabase();
+    // client = await connectDatabase();
+    await client.connect();
 
     if (req.method === "POST") {
       const id = req.body.id;
@@ -50,7 +52,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       ) {
         res.status(400).json({ code: 400, message: "Invalid request." });
         console.log(newEvent);
-        return;
+        // return;
       }
       try {
         await insertDocument(client, "events", newEvent);
