@@ -76,11 +76,11 @@ function EventDetailPage(props: Props) {
 export async function getStaticProps({ params }: any) {
   const eventId = params.eventId;
 
-  let dev = process.env.NODE_ENV !== "production";
-  let { DEV_URL, PROD_URL } = process.env;
+  const dev = process.env.NODE_ENV !== "production";
+  const { DEV_URL, PROD_URL } = process.env;
 
-  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/` + eventId);
-  let data = await response.json();
+  const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/` + eventId);
+  const data = await response.json();
 
   return {
     props: {
@@ -93,11 +93,11 @@ export async function getStaticProps({ params }: any) {
 export async function getStaticPaths(props: any) {
   const eventId = props.eventId;
 
-  let dev = process.env.NODE_ENV !== "production";
-  let { DEV_URL, PROD_URL } = process.env;
+  const dev = process.env.NODE_ENV !== "production";
+  const { DEV_URL, PROD_URL } = process.env;
 
-  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/${eventId}`);
-  let data = await response.json();
+  const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/${eventId}`);
+  const data = await response.json();
 
   const paths = data.map((event: any) => ({ params: { eventId: event.id } }));
 

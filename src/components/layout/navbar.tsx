@@ -27,16 +27,16 @@ function Navbar() {
     setAnchorElNav(null);
   };
 
-  const toggleAdmin = () => {
-    const router = useRouter();
-    const eventId = router.query.eventId;
+  // const toggleAdmin = () => {
+  //   const router = useRouter();
+  //   const eventId = router.query.eventId;
 
-    if (eventId) {
-      return <li>{/* <AdminMenu /> */}</li>;
-    } else {
-      return;
-    }
-  };
+  //   if (eventId) {
+  //     return <li>{/* <AdminMenu /> */}</li>;
+  //   } else {
+  //     return;
+  //   }
+  // };
 
   return (
     <AppBar position="static">

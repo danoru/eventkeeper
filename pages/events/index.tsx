@@ -21,11 +21,11 @@ function EventsPage(props: any) {
 }
 
 export async function getServerSideProps(context: any) {
-  let dev = process.env.NODE_ENV !== "production";
-  let { DEV_URL, PROD_URL } = process.env;
+  const dev = process.env.NODE_ENV !== "production";
+  const { DEV_URL, PROD_URL } = process.env;
 
-  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/events`);
-  let data = await response.json();
+  const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/events`);
+  const data = await response.json();
 
   return {
     props: {
