@@ -74,7 +74,7 @@ function EventDetailPage(props: Props) {
 }
 
 export async function getStaticProps({ params }: any) {
-  const eventId = params.eventId;
+  const { eventId } = params;
 
   const dev = process.env.NODE_ENV !== "production";
   const { DEV_URL, PROD_URL } = process.env;

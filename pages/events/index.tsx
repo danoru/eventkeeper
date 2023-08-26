@@ -20,7 +20,7 @@ function EventsPage(props: any) {
   );
 }
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps() {
   const dev = process.env.NODE_ENV !== "production";
   const { DEV_URL, PROD_URL } = process.env;
 
