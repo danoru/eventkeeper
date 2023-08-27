@@ -82,6 +82,10 @@ export async function getStaticProps({ params }: any) {
   const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/` + eventId);
   const data = await response.json();
 
+  console.log(data);
+  console.log(DEV_URL);
+  console.log(PROD_URL);
+
   return {
     props: {
       data,

@@ -1,5 +1,3 @@
-import { MongoClient } from "mongodb";
-
 import {
   connectDatabase,
   getFilteredDocuments,
@@ -7,10 +5,8 @@ import {
   updateDocument,
 } from "../../../src/helpers/db-util";
 
-import { NextApiRequest, NextApiResponse } from "next";
-
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  let client: MongoClient | undefined = undefined;
+async function handler(req, res) {
+  let client;
 
   const eventId = req.query.eventId;
 

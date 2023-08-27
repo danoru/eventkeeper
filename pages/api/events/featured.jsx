@@ -1,14 +1,10 @@
-import { MongoClient } from "mongodb";
-
 import {
   connectDatabase,
   getFilteredDocuments,
 } from "../../../src/helpers/db-util";
 
-import { NextApiRequest, NextApiResponse } from "next";
-
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  let client: MongoClient | undefined = undefined;
+async function handler(req, res) {
+  let client;
 
   try {
     client = await connectDatabase();

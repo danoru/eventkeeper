@@ -1,12 +1,8 @@
-import { MongoClient } from "mongodb";
-
 import { connectDatabase, updateDocument } from "../../../src/helpers/db-util";
 
-import { NextApiRequest, NextApiResponse } from "next";
+async function handler(req, res) {
+  let client;
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // const client = new MongoClient(process.env.MONGODB_URI!);
-  let client: MongoClient | undefined = undefined;
   const id = req.body.id;
   const isGuestOnly = req.body.isGuestOnly;
   const isFeatured = req.body.isFeatured;

@@ -1,16 +1,11 @@
-import { MongoClient } from "mongodb";
 import {
   connectDatabase,
   getFilteredDocuments,
   insertDocument,
 } from "../../../src/helpers/db-util";
 
-import { NextApiRequest, NextApiResponse } from "next";
-
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // const client = new MongoClient(process.env.MONGODB_URI!);
-
-  let client: MongoClient | undefined = undefined;
+async function handler(req, res) {
+  let client;
 
   const item = req.body.item;
   const itemType = req.body.itemType;

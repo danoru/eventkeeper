@@ -1,18 +1,10 @@
-import { MongoClient } from "mongodb";
-
 import {
   connectDatabase,
-  // getAllDocuments,
   getFilteredDocuments,
-  // insertDocument,
 } from "../../../src/helpers/db-util";
 
-import { NextApiRequest, NextApiResponse } from "next";
-
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // const client = new MongoClient(process.env.MONGODB_URI!);
-
-  let client: MongoClient | undefined = undefined;
+async function handler(req, res) {
+  let client;
 
   try {
     client = await connectDatabase();
@@ -22,19 +14,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (req.method === "POST") {
-    //   if (!itemType || !item || item.trim() === "") {
-    //     res.status(422).json({ message: "Invalid input" });
-    //     return;
-    //   }
-    //   try {
-    //     await insertDocument(client, "attendance", { itemEntry: newItemEntry });
-    //     client.close();
-    //   } catch (error) {
     res.status(500).json({ message: "Inserting data failed." });
     return;
-    //   }
-    // res.status(201).json({ message: "Item added successfully." });
-    // return;
   }
 
   if (req.method === "GET") {
