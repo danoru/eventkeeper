@@ -84,8 +84,6 @@ export async function getStaticProps({ params }: any) {
 
   console.log(data);
   console.log(DEV_URL);
-  console.log(PROD_URL);
-
   return {
     props: {
       data,
@@ -95,18 +93,18 @@ export async function getStaticProps({ params }: any) {
 }
 
 export async function getStaticPaths(props: any) {
-  const eventId = props.eventId;
+  // const eventId = props.eventId;
 
-  const dev = process.env.NODE_ENV !== "production";
-  const { DEV_URL, PROD_URL } = process.env;
+  // const dev = process.env.NODE_ENV !== "production";
+  // const { DEV_URL, PROD_URL } = process.env;
 
-  const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/${eventId}`);
-  const data = await response.json();
+  // const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/${eventId}`);
+  // const data = await response.json();
 
-  const paths = data.map((event: any) => ({ params: { eventId: event.id } }));
+  // const paths = data.map((event: any) => ({ params: { eventId: event.id } }));
 
   return {
-    paths: paths,
+    paths: [],
     fallback: "blocking",
   };
 }
