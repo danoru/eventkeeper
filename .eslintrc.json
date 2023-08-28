@@ -11,7 +11,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "project": null
+    "project": ["tsconfig.json"]
   },
   "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"],
   "plugins": ["@emotion"],

@@ -2,8 +2,9 @@ import {
   connectDatabase,
   getFilteredDocuments,
 } from "../../../src/helpers/db-util";
+import { NextApiRequest, NextApiResponse } from "next";
 
-async function handler(req, res) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   let client;
 
   try {
@@ -14,7 +15,7 @@ async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    res.status(500).json({ message: "Inserting data failed." });
+    res.status(500).json({ message: "Inserting data not allowed." });
     return;
   }
 
@@ -23,7 +24,7 @@ async function handler(req, res) {
       const documents = await getFilteredDocuments(
         client,
         "events",
-        {},
+        { isFeatured: true },
         { _id: -1 }
       );
       res.status(200).json(documents);

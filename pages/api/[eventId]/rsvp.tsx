@@ -3,8 +3,9 @@ import {
   getFilteredDocuments,
   insertDocument,
 } from "../../../src/helpers/db-util";
+import { NextApiRequest, NextApiResponse } from "next";
 
-async function handler(req, res) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   let client;
 
   const item = req.body.item;

@@ -1,12 +1,16 @@
 import { MongoClient } from "mongodb";
 
 export async function connectDatabase() {
-  const client = await MongoClient.connect(process.env.MONGODB_URI);
+  const client = await MongoClient.connect(process.env.MONGODB_URI!);
 
   return client;
 }
 
-export async function insertDocument(client, collection, document) {
+export async function insertDocument(
+  client: any,
+  collection: any,
+  document: any
+) {
   const db = client.db();
 
   const result = await db.collection(collection).insertOne(document);
@@ -14,7 +18,12 @@ export async function insertDocument(client, collection, document) {
   return result;
 }
 
-export async function updateDocument(client, collection, filter, document) {
+export async function updateDocument(
+  client: any,
+  collection: any,
+  filter: any,
+  document: any
+) {
   const db = client.db();
 
   const result = await db.collection(collection).updateOne(filter, document);
@@ -22,7 +31,7 @@ export async function updateDocument(client, collection, filter, document) {
   return result;
 }
 
-export async function getAllDocuments(client, collection, sort) {
+export async function getAllDocuments(client: any, collection: any, sort: any) {
   const db = client.db();
 
   const documents = await db.collection(collection).find().sort(sort).toArray();
@@ -30,7 +39,12 @@ export async function getAllDocuments(client, collection, sort) {
   return documents;
 }
 
-export async function getFilteredDocuments(client, collection, find, sort) {
+export async function getFilteredDocuments(
+  client: any,
+  collection: any,
+  find: any,
+  sort: any
+) {
   const db = client.db();
 
   const documents = await db
