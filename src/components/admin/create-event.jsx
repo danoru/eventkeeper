@@ -27,7 +27,6 @@ function CreateEvent() {
   const [flyer, setFlyer] = useState("");
   const [isFeatured, setIsFeatured] = useState(false);
   const [isGuestOnly, setIsGuestOnly] = useState(false);
-  const [userEventIds, setUserEventIds] = useState([]);
 
   const user = "sparks";
   const currentYear = moment().format("YY");
@@ -36,16 +35,16 @@ function CreateEvent() {
   useEffect(() => {
     fetchEventIds(userYear)
       .then((eventIds) => {
-        setUserEventIds(eventIds);
+        let incrementalNumber = eventIds.length + 1;
+        const number = incrementalNumber.toString().padStart(2, "0");
+        const newEventId = userYear + number;
+        setId(newEventId);
+        console.log(id);
       })
       .catch((error) => {
         console.error("Error fetching event IDs:", error);
       });
   }, []);
-
-  let incrementalNumber = userEventIds.length + 1;
-  const number = incrementalNumber.toString().padStart(2, "0");
-  const newEventId = userYear + number;
 
   const idHandler = (e) => {
     setId(e.target.value);
@@ -118,7 +117,7 @@ function CreateEvent() {
           id="outlined-adornment"
           onChange={idHandler}
           label="Event ID"
-          value={newEventId}
+          value={id}
           disabled
         />
       </FormControl>
