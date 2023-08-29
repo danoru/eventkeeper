@@ -41,7 +41,7 @@ function CreateEvent() {
   useEffect(() => {
     fetchEventIds(userYear)
       .then((eventIds) => {
-        let incrementalNumber = eventIds.length + 1;
+        const incrementalNumber = eventIds.length + 1;
         const number = incrementalNumber.toString().padStart(2, "0");
         const newEventId = userYear + number;
         setId(newEventId);
