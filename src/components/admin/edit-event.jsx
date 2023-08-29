@@ -237,6 +237,23 @@ function EditEvent(props) {
           }}
         >
           <InputLabel id="input-label" shrink>
+            Image
+          </InputLabel>
+          <OutlinedInput
+            id="outlined-adornment"
+            label="Image"
+            value={eventData.image}
+            notched
+            disabled
+          />
+        </FormControl>
+        <FormControl
+          sx={{
+            m: 1,
+            width: "25ch",
+          }}
+        >
+          <InputLabel id="input-label" shrink>
             Flyer
           </InputLabel>
           <OutlinedInput
