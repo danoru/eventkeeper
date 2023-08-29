@@ -1,6 +1,7 @@
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
+import Notification from "../ui/notification";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
@@ -9,12 +10,12 @@ import moment from "moment";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { useState, useEffect } from "react";
 
-async function fetchEventIds(userYear) {
+async function fetchEventIds(userYear: any) {
   const response = await fetch("/api/events/");
   const data = await response.json();
   const eventIds = data
-    .map((item) => item.id)
-    .filter((id) => id.startsWith(userYear));
+    .map((item: any) => item.id)
+    .filter((id: any) => id.startsWith(userYear));
   return eventIds;
 }
 
@@ -27,6 +28,11 @@ function CreateEvent() {
   const [flyer, setFlyer] = useState("");
   const [isFeatured, setIsFeatured] = useState(false);
   const [isGuestOnly, setIsGuestOnly] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
+  const [notificationSeverity, setNotificationSeverity] = useState<
+    "success" | "error"
+  >("success");
 
   const user = "sparks";
   const currentYear = moment().format("YY");
@@ -46,35 +52,39 @@ function CreateEvent() {
       });
   }, []);
 
-  const idHandler = (e) => {
+  const idHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
   };
-  const titleHandler = (e) => {
+  const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
-  const descriptionHandler = (e) => {
+  const descriptionHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(e.target.value);
   };
-  const locationHandler = (e) => {
+  const locationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
   };
 
-  const flyerHandler = (e) => {
+  const flyerHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFlyer(e.target.value);
   };
 
-  const featuredHandler = (e) => {
+  const featuredHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const toggleValue = e.target.checked;
     setIsFeatured(toggleValue);
   };
 
-  const guestOnlyHandler = (e) => {
+  const guestOnlyHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const toggleValue = e.target.checked;
     setIsGuestOnly(toggleValue);
   };
 
-  const submitFormHandler = (e) => {
+  const handleNotificationClose = () => {
+    setNotificationOpen(false);
+  };
+
+  const submitFormHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = document.querySelector("form");
@@ -91,17 +101,40 @@ function CreateEvent() {
       isGuestOnly: isGuestOnly,
     };
 
-    fetch("/api/" + id, {
-      method: "POST",
-      body: JSON.stringify(reqBody),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-
-    form.reset();
+    try {
+      fetch("/api/" + id, {
+        method: "POST",
+        body: JSON.stringify(reqBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Item creation failed");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          setNotificationOpen(true);
+          setNotificationMessage("Item created successfully!");
+          setNotificationSeverity("success");
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+          setNotificationOpen(true);
+          setNotificationMessage("Item creation failed. Please try again.");
+          setNotificationSeverity("error");
+        });
+    } catch (error) {
+      console.error("Try-catch error:", error);
+      setNotificationOpen(true);
+      setNotificationMessage("Item creation failed. Please try again.");
+      setNotificationSeverity("error");
+    } finally {
+      form?.reset();
+    }
   };
 
   return (
@@ -172,12 +205,7 @@ function CreateEvent() {
         <DateTimePicker
           disablePast
           label="Date"
-          onChange={(newDate) => setDate(newDate)}
-          slotProps={{
-            textField: {
-              readOnly: true,
-            },
-          }}
+          onChange={(newDate: any) => setDate(newDate)}
         />
       </FormControl>
       <FormControl
@@ -222,6 +250,12 @@ function CreateEvent() {
       <Button variant="contained" type="submit" sx={{ margin: "10px" }}>
         Create New Event
       </Button>
+      <Notification
+        open={notificationOpen}
+        message={notificationMessage}
+        severity={notificationSeverity}
+        onClose={handleNotificationClose}
+      />
     </form>
   );
 }
