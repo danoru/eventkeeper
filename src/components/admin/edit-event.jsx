@@ -297,6 +297,9 @@ function EditEvent(props) {
             <MenuItem value="date" id="date">
               Date
             </MenuItem>
+            <MenuItem value="image" id="image">
+              Image
+            </MenuItem>
             <MenuItem value="flyer" id="flyer">
               Flyer
             </MenuItem>
