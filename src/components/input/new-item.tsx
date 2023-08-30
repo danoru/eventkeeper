@@ -2,12 +2,12 @@ import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 
-function NewItem(props) {
+function NewItem(props: any) {
   const { eventId, updateItems, data } = props;
   const router = useRouter();
 
@@ -16,11 +16,11 @@ function NewItem(props) {
 
   const dynamicItemType = itemType === "guest-name" ? "Guest" : "Item";
 
-  const selectionHandler = (e) => {
+  const selectionHandler = (e: SelectChangeEvent) => {
     setItemType(e.target.value);
   };
 
-  const itemHandler = (e) => {
+  const itemHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItem(e.target.value);
   };
 
@@ -38,7 +38,6 @@ function NewItem(props) {
         >
           <InputLabel id="select-label">Type</InputLabel>
           <Select
-            htmlFor="item-type"
             id="item-type"
             label="Type"
             onChange={selectionHandler}
@@ -61,7 +60,6 @@ function NewItem(props) {
         >
           <InputLabel id="select-label">Type</InputLabel>
           <Select
-            htmlFor="item-type"
             id="item-type"
             label="Type"
             onChange={selectionHandler}
@@ -94,7 +92,7 @@ function NewItem(props) {
     }
   };
 
-  function submitFormHandler(e) {
+  function submitFormHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const enteredEventId = router.query.eventId;
@@ -118,7 +116,7 @@ function NewItem(props) {
       .then((response) => response.json())
       .then((data) => console.log(data));
     updateItems(reqBody);
-    form.reset();
+    form?.reset();
   }
 
   return (
