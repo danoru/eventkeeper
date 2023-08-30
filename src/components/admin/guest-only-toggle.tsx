@@ -5,7 +5,7 @@ import Switch from "@mui/material/Switch";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-function GuestOnlyToggle(props) {
+function GuestOnlyToggle(props: any) {
   const router = useRouter();
   const eventId = router.query.eventId;
   const { setLoadingStatus } = props;
@@ -23,7 +23,7 @@ function GuestOnlyToggle(props) {
       });
   }, []);
 
-  const toggleGuestOnly = () => {
+  const toggleGuestOnly = (isChecked: boolean) => {
     fetch("/api/" + eventId + "/toggleValues", {
       method: "PUT",
       body: JSON.stringify({
@@ -38,7 +38,7 @@ function GuestOnlyToggle(props) {
       .then((data) => console.log(data));
   };
 
-  const switchHandler = (e) => {
+  const switchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const toggleValue = e.target.checked;
     setIsChecked(toggleValue);
     toggleGuestOnly(toggleValue);
@@ -50,7 +50,7 @@ function GuestOnlyToggle(props) {
         label="Guest Only"
         labelPlacement="start"
         control={
-          <Switch disabled checked={isChecked} onClick={switchHandler} />
+          <Switch disabled checked={isChecked} onChange={switchHandler} />
         }
         sx={{ margin: "auto" }}
       />

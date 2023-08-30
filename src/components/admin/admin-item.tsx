@@ -2,12 +2,12 @@ import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-function AdminItem(props) {
+function AdminItem(props: any) {
   const { eventId } = props;
   const router = useRouter();
 
@@ -16,15 +16,15 @@ function AdminItem(props) {
 
   const dynamicItemType = itemType === "guest-name" ? "Guest" : "Item";
 
-  const selectionHandler = (e) => {
+  const selectionHandler = (e: SelectChangeEvent) => {
     setItemType(e.target.value);
   };
 
-  const itemHandler = (e) => {
+  const itemHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItem(e.target.value);
   };
 
-  const submitFormHandler = (e) => {
+  const submitFormHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const enteredEventId = router.query.eventId;
@@ -48,7 +48,7 @@ function AdminItem(props) {
       .then((response) => response.json())
       .then((data) => console.log(data));
 
-    form.reset();
+    form?.reset();
   };
 
   return (
@@ -63,7 +63,6 @@ function AdminItem(props) {
         >
           <InputLabel id="select-label">Type</InputLabel>
           <Select
-            htmlFor="item-type"
             id="item-type"
             label="Type"
             onChange={selectionHandler}

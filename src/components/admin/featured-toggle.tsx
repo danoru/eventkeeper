@@ -19,7 +19,7 @@ function FeaturedToggle() {
       });
   }, []);
 
-  const toggleFeaturedEvent = () => {
+  const toggleFeaturedEvent = (isChecked: boolean) => {
     fetch("/api/" + eventId + "/toggleValues", {
       method: "PUT",
       body: JSON.stringify({
@@ -34,7 +34,7 @@ function FeaturedToggle() {
       .then((data) => console.log(data));
   };
 
-  const switchHandler = (e) => {
+  const switchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const toggleValue = e.target.checked;
     setIsChecked(toggleValue);
     toggleFeaturedEvent(toggleValue);

@@ -3,7 +3,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Select from "@mui/material/Select";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { useRouter } from "next/router";
@@ -12,30 +12,30 @@ import { useState, useEffect } from "react";
 import FeaturedToggle from "./featured-toggle";
 import GuestOnlyToggle from "./guest-only-toggle";
 
-async function fetchEvent(eventId) {
+async function fetchEvent(eventId: any) {
   const response = await fetch("/api/" + eventId);
   const data = await response.json();
   const currentEventData = data[0];
   return currentEventData;
 }
 
-function EditEvent(props) {
-  const [eventData, setEventData] = useState([]);
+function EditEvent(props: any) {
+  const [eventData, setEventData] = useState<any>([]);
   const [eventDetailType, setEventDetailType] = useState("");
-  const [eventDetailItem, setEventDetailItem] = useState("");
+  const [eventDetailItem, setEventDetailItem] = useState(false);
 
   const router = useRouter();
   const eventId = router.query.eventId;
   const { setLoadingStatus } = props;
 
-  const keyHandler = (e) => {
+  const keyHandler = (e: SelectChangeEvent) => {
     setEventDetailType(e.target.value);
   };
 
-  const valueHandler = (e) => {
+  const valueHandler = (e: any) => {
     if (eventDetailType === "date") {
       {
-        (newDate) => setEventDetailitem(newDate);
+        (newDate: any) => setEventDetailItem(newDate);
       }
     }
     if (eventDetailType === "isFeatured" || eventDetailType === "isGuestOnly") {
@@ -55,16 +55,7 @@ function EditEvent(props) {
           width: "25ch",
         }}
       >
-        <DateTimePicker
-          disablePast
-          label="Date"
-          onChange={valueHandler}
-          slotProps={{
-            textField: {
-              readOnly: true,
-            },
-          }}
-        />
+        <DateTimePicker disablePast label="Date" onChange={valueHandler} />
       </FormControl>
     ) : eventDetailType === "isFeatured" ||
       eventDetailType === "isGuestOnly" ? (
@@ -76,7 +67,6 @@ function EditEvent(props) {
       >
         <InputLabel id="select-label">Value</InputLabel>
         <Select
-          htmlFor="value"
           id="value"
           label={
             eventDetailType === "isFeatured" ? "isFeatured" : "isGuestOnly"
@@ -117,7 +107,7 @@ function EditEvent(props) {
       });
   }, []);
 
-  const submitFormHandler = (e) => {
+  const submitFormHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = document.querySelector("form");
@@ -138,7 +128,7 @@ function EditEvent(props) {
       .then((response) => response.json())
       .then((data) => console.log(data));
 
-    form.reset();
+    form?.reset();
   };
 
   return (
@@ -279,7 +269,6 @@ function EditEvent(props) {
         >
           <InputLabel id="select-label">Key</InputLabel>
           <Select
-            htmlFor="item-type"
             id="item-type"
             label="Type"
             onChange={keyHandler}
