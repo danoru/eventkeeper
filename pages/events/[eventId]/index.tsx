@@ -24,8 +24,10 @@ function EventDetailPage(props: Props) {
   }
 
   const pageTitle = "EventKeeper: " + event.title;
-
-  const humanReadableDate = moment(event.date).format("dddd, MMMM Do YYYY");
+  const formattedAddress = event.location.replace("--", " / ");
+  const humanReadableDate = moment(event.date).format(
+    "dddd, MMMM Do YYYY [at] h:mm A"
+  );
 
   const timeUntilDate = moment(event.date).startOf("hour").fromNow();
 
@@ -62,6 +64,7 @@ function EventDetailPage(props: Props) {
       {/* <AttendanceRegistration /> */}
       <div>
         <h1>{event.title}</h1>
+        <h2>{formattedAddress}</h2>
         <h2>{humanReadableDate}</h2>
         <h3>This event {checkTense()}.</h3>
       </div>
