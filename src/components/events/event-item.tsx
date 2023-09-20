@@ -6,7 +6,9 @@ import moment from "moment";
 function EventItem(props: any) {
   const { title, image, flyer, date, location, id } = props;
 
-  const humanReadableDate = moment(date).format("dddd, MMMM Do YYYY");
+  const humanReadableDate = moment(date).format(
+    "dddd, MMMM Do YYYY [at] h:mm A"
+  );
   const formattedAddress = location.replace("--", "\n");
   const exploreLink = `/events/${id}`;
 
