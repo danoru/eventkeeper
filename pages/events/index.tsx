@@ -9,7 +9,7 @@ function EventsPage(props: any) {
   return (
     <Fragment>
       <Head>
-        <title>EventKeeper: All Events</title>
+        <title>Comunl: All Events</title>
         <meta
           name="description"
           content="Find a lot of great events to attend with your friends!"

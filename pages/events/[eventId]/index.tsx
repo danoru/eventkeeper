@@ -23,7 +23,7 @@ function EventDetailPage(props: Props) {
     setItems([...items, newItemEntry]);
   }
 
-  const pageTitle = "EventKeeper: " + event.title;
+  const pageTitle = "Comunl: " + event.title;
   const formattedAddress = event.location.replace("--", " / ");
   const humanReadableDate = moment(event.date).format(
     "dddd, MMMM Do YYYY [at] h:mm A"

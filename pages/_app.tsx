@@ -27,7 +27,7 @@ export default function MyApp(props: AppProps) {
       <LocalizationProvider dateAdapter={AdapterMoment}>
         <Layout>
           <Head>
-            <title>EventKeeper</title>
+            <title>Comunl</title>
             <meta charSet="utf-8" />
             <meta
               name="viewport"
