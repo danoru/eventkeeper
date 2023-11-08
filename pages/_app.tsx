@@ -27,7 +27,11 @@ export default function MyApp(props: AppProps) {
       <LocalizationProvider dateAdapter={AdapterMoment}>
         <Layout>
           <Head>
+<<<<<<< HEAD
             <title>Cody&apos;s Corner</title>
+=======
+            <title>Cody`&apos;`s Corner</title>
+>>>>>>> origin/main
             <meta charSet="utf-8" />
             <meta
               name="viewport"
