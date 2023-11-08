@@ -8,7 +8,7 @@ function HomePage(props: any) {
   return (
     <div>
       <Head>
-        <title>Comunl</title>
+        <title>Cody's Corner</title>
         <meta
           name="description"
           content="Find and RSVP for events with friends!"
