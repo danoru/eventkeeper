@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 
-export interface EVENT_DATA_TYPE {
+export type EventInformation = {
   _id: ObjectId;
   id: string;
   title: string;
@@ -13,7 +13,7 @@ export interface EVENT_DATA_TYPE {
   isGuestOnly: boolean;
 }
 
-export interface ITEM_ENTRY_TYPE {
+export type ItemEntry = {
   _id: ObjectId;
   itemEntry: object;
   itemType: string;

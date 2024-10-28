@@ -1,11 +1,19 @@
-import Image from "next/image";
-import Button from "../ui/button";
-import classes from "./event-item.module.css";
 import moment from "moment";
+import Image from "next/image";
 
-function EventItem(props: any) {
-  const { title, image, flyer, date, location, id } = props;
+import classes from "./event-item.module.css";
 
+import Button from "../ui/button";
+
+interface Props {
+  date: Date;
+  id: string;
+  image: string;
+  location: string;
+  title: string;
+}
+
+function EventItem({id, title, location, date, image }: Props) {
   const humanReadableDate = moment(date).format(
     "dddd, MMMM Do YYYY [at] h:mm A"
   );

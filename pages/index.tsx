@@ -1,11 +1,15 @@
 import * as React from "react";
-
 import Head from "next/head";
 
 import EventList from "../src/components/events/event-list";
+import { EventInformation } from "../src/types";
 
-function HomePage(props: any) {
-  return (
+interface Props {
+  events: EventInformation[]
+}
+
+function HomePage({events}: Props) {
+    return (
     <div>
       <Head>
         <title>Cody's Corner</title>
@@ -14,7 +18,7 @@ function HomePage(props: any) {
           content="Find and RSVP for events with friends!"
         />
       </Head>
-      <EventList items={props.events} />
+      <EventList items={events} />
     </div>
   );
 }

@@ -7,8 +7,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-function NewItem(props: any) {
-  const { eventId, updateItems, data } = props;
+function NewItem({eventId, updateItems, data}: any) {
   const router = useRouter();
 
   const [item, setItem] = useState("");
@@ -24,7 +23,7 @@ function NewItem(props: any) {
     setItem(e.target.value);
   };
 
-  const rsvp = data[0].isGuestOnly;
+  const rsvp = data?.[0].isGuestOnly;
 
   const checkGuestOnly = () => {
     if (rsvp) {
