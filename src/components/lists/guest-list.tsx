@@ -12,6 +12,18 @@ function GuestList({ items }: Props) {
   const eventId = router.query.eventId;
 
   const rsvpList = items
+  ?.filter(
+    (item: any) =>
+      item.itemEntry.itemType === "guest-name" &&
+      item.itemEntry.eventId === eventId
+  )
+  .map((item: any) => (
+    <li key={item._id}>
+      <p>{item.itemEntry.item}</p>
+    </li>
+  ));
+
+  const rsvpListAdjusted = items
     .filter(
       (item) =>
         item.itemEntry.itemType === "guest-name" &&
@@ -28,21 +40,13 @@ function GuestList({ items }: Props) {
       };
     });
 
-  const guestCount = rsvpList.reduce((total, item) => total + item.names.length, 0);
-
-  const rsvpListNames = rsvpList.map((item) => (
-    <li key={item.id}>
-      {item.names.map((name: string, index: number) => (
-        <p key={`${item.id}-${index}`}>{name}</p>
-      ))}
-    </li>
-  ));
+  const guestCount = rsvpListAdjusted.reduce((total, item) => total + item.names.length, 0);
 
   return (
     <Grid item xs={6} sm={4} md={1}>
       <h3>Guest List ({guestCount})</h3>
       <div>
-        <ul>{rsvpListNames}</ul>
+        <ul>{rsvpList}</ul>
       </div>
     </Grid>
   );
