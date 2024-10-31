@@ -16,6 +16,7 @@ interface Props {
 
 function EventDetailPage({ data }: Props) {
   const [event] = data || [];
+  const [items, setItems] = useState<ItemDetail[]>([]);
 
   if (!event) {
     return (
@@ -25,7 +26,6 @@ function EventDetailPage({ data }: Props) {
     );
   }
 
-  const [items, setItems] = useState<ItemDetail[]>([]);
 
   function updateItems(newItem: ItemDetail["itemEntry"]) {
     const newItemEntry: ItemDetail = { _id: '', itemEntry: newItem };
