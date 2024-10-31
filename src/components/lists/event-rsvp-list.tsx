@@ -9,17 +9,17 @@ import MainDishList from "./main-dish-list";
 import SideDishList from "./side-dish-list";
 import SnackList from "./snack-list";
 import SuppliesList from "./supplies-list";
-import { EventInformation, ItemEntry } from "../../../src/types/index";
+import { EventInformation, ItemDetail } from "../../../src/types/index";
 
 interface EventRSVPListProps {
   event: EventInformation;
-  items: ItemEntry[];
-  setItems: ItemEntry[];
+  items: ItemDetail[];
+  setItems: any;
 }
 
 function EventRSVPList({ event, items, setItems }: EventRSVPListProps) {
   const router = useRouter();
-  const eventId = router.query.eventId as string; // Ensure eventId is a string
+  const eventId = router.query.eventId as string;
   const [showItems, setShowItems] = useState(true);
   const isGuestOnly = event?.isGuestOnly;
 
@@ -33,7 +33,7 @@ function EventRSVPList({ event, items, setItems }: EventRSVPListProps) {
           return response.json();
         })
         .then((data) => {
-          setItems(data.attendance || []); // Fallback to an empty array
+          setItems(data.attendance || []);
         })
         .catch((error) => {
           console.error("Fetch error:", error);

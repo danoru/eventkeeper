@@ -1,19 +1,10 @@
 import Grid from "@mui/material/Grid";
 import { useRouter } from "next/router";
 
-interface ItemEntry {
-  itemType: string;
-  eventId: string;
-  item: string;
-}
-
-interface Item {
-  _id: string;
-  itemEntry: ItemEntry;
-}
+import { ItemDetail } from "../../types";
 
 interface Props {
-  items: Item[];
+  items: ItemDetail[];
 }
 
 function GuestList({ items }: Props) {
@@ -26,10 +17,10 @@ function GuestList({ items }: Props) {
         item.itemEntry.itemType === "guest-name" &&
         item.itemEntry.eventId === eventId
     )
-    .map((item) => {
+    .map((item: any) => {
       const names = item.itemEntry.item
         .split(/[+,&]/)
-        .map((name) => name.trim())
+        .map((name: string) => name.trim())
         .filter(Boolean);
       return {
         id: item._id,
@@ -41,7 +32,7 @@ function GuestList({ items }: Props) {
 
   const rsvpListNames = rsvpList.map((item) => (
     <li key={item.id}>
-      {item.names.map((name, index) => (
+      {item.names.map((name: string, index: number) => (
         <p key={`${item.id}-${index}`}>{name}</p>
       ))}
     </li>

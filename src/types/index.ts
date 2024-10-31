@@ -13,10 +13,11 @@ export type EventInformation = {
   isGuestOnly: boolean;
 }
 
-export type ItemEntry = {
-  _id: ObjectId;
-  itemEntry: object;
-  itemType: string;
-  item: string;
-  eventId: string;
-}
+export type ItemDetail = {
+  _id: string;
+  itemEntry: {
+    itemType: string;
+    item: string;
+    eventId: string;
+  };
+};

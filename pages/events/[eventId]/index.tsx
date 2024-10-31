@@ -7,7 +7,8 @@ import { Fragment, useState } from "react";
 import EventRSVPList from "../../../src/components/lists/event-rsvp-list";
 import HostRecommendations from "../../../src/components/admin/host-recommendations";
 import NewItem from "../../../src/components/input/new-item";
-import { EventInformation, ItemEntry } from "../../../src/types/index";
+import { EventInformation, ItemDetail } from "../../../src/types/index";
+
 
 interface Props {
   data: EventInformation[];
@@ -24,10 +25,10 @@ function EventDetailPage({ data }: Props) {
     );
   }
 
-  const [items, setItems] = useState<{ _id: string; itemEntry: ItemEntry }[]>([]);
+  const [items, setItems] = useState<ItemDetail[]>([]);
 
-  function updateItems(newItem: ItemEntry) {
-    const newItemEntry = { _id: "", itemEntry: newItem };
+  function updateItems(newItem: ItemDetail["itemEntry"]) {
+    const newItemEntry: ItemDetail = { _id: '', itemEntry: newItem };
     setItems((prevItems) => [...prevItems, newItemEntry]);
   }
 
@@ -62,7 +63,7 @@ function EventDetailPage({ data }: Props) {
       <Image src={event.flyer} width={450} height={450} alt={event.title} />
       <HostRecommendations />
       {checkRSVP()}
-      <EventRSVPList items={items} setItems={setItems} {...event} />
+      <EventRSVPList event={event} items={items} setItems={setItems} />
     </Fragment>
   );
 }
